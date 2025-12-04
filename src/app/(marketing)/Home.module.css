@@ -1,0 +1,241 @@
+/* Homepage Styles */
+
+.homePage {
+  min-height: 100vh;
+}
+
+/* === Hero Video Section === */
+.heroVideo {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: -90px;
+}
+
+.videoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26, 11, 46, 0.1), rgba(26, 11, 46, 0.4));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.heroContent {
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.heroBtnGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.heroBtn {
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btnPrimary {
+  background: var(--site-accent);
+  color: white;
+  box-shadow: 0 10px 30px rgba(255, 94, 161, 0.4);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 94, 161, 0.6);
+}
+
+.btnGlass {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.btnGlass:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* === Location Cards Grid === */
+.locationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.locationCard {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.locationCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.locationImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.locationCard:hover .locationImage {
+  transform: scale(1.1);
+}
+
+.locationOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  z-index: 2;
+}
+
+.locationOverlay h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* === Animations === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .locationsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroVideo {
+    height: 80vh;
+    margin-top: -70px;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .heroBtnGroup {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .heroBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .locationsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .locationCard {
+    aspect-ratio: 3/4;
+  }
+
+  .locationOverlay {
+    padding: 1.5rem;
+  }
+
+  .locationOverlay h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroVideo {
+    height: 70vh;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .heroBtn {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+  }
+}
