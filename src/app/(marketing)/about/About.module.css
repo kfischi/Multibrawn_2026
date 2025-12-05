@@ -237,3 +237,177 @@
     padding: 1rem;
   }
 }
+
+/* === NEW SECTIONS CSS === */
+
+.contentContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.differenceSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,249,250,0.95));
+}
+
+.mainHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.subHeading {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+}
+
+.problemParagraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.problemHighlight {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--color-pink);
+}
+
+.solutionHeading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 3rem 0 2rem;
+  color: var(--color-text-primary);
+}
+
+.solutionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.solutionBox {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.solutionBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.solutionBox h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.solutionBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.solutionBox li {
+  padding: 0.6rem 0 0.6rem 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.solutionBox li::before {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  color: var(--color-pink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.comparisonSection {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.compareBoxNegative,
+.compareBoxPositive {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.compareBoxNegative {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+}
+
+.compareBoxPositive {
+  background: linear-gradient(135deg, rgba(255, 94, 161, 0.05), rgba(160, 107, 255, 0.05));
+  border: 2px solid var(--color-pink);
+}
+
+.compareBoxNegative h3,
+.compareBoxPositive h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.compareBoxNegative ul,
+.compareBoxPositive ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.compareBoxNegative li,
+.compareBoxPositive li {
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.compareBoxNegative li::before {
+  content: '✗';
+  position: absolute;
+  right: 0;
+  color: #dc3545;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.compareBoxPositive li::before {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  color: var(--color-pink);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
