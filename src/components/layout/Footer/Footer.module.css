@@ -111,3 +111,31 @@
     font-size: 1rem;
   }
 }
+
+/* === Multi-Site Credit === */
+.creditSection {
+  margin: 2rem 0 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 94, 161, 0.05);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 94, 161, 0.2);
+}
+
+.creditText {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.creditSubtext {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.creditText strong,
+.creditSubtext strong {
+  color: var(--color-pink);
+  font-weight: 700;
+}
