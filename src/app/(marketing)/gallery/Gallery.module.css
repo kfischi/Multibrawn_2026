@@ -247,3 +247,48 @@
     height: 300px;
   }
 }
+
+/* === Category Description === */
+.categoryDescription {
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2d3748;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+/* === Professional Icons === */
+.filterBtn svg {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.categoryIconWrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  border-radius: 50%;
+  color: white;
+}
+
+.categoryIconWrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.categoryTitle {
+  margin: 0;
+}
