@@ -136,6 +136,13 @@
 
 .creditText strong,
 .creditSubtext strong {
-  color: var(--color-pink);
   font-weight: 700;
+}
+
+.creditText strong {
+  color: #1a1a1a;
+}
+
+.creditSubtext strong {
+  color: var(--color-pink);
 }
