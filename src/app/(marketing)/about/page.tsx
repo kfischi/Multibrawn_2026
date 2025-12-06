@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import SocialLinks from '@/components/ui/SocialLinks/SocialLinks';
 import styles from './About.module.css';
 
@@ -14,7 +13,7 @@ export default function AboutPage() {
           מתסכול אישי<br />לחזון משנה מציאות
         </h1>
         <p className={styles.heroSubtitle}>
-          "לכל אדם מגיע שירות אישי שחוסך לו זמן ומבטיח לו 100% אמינות"
+          &quot;לכל אדם מגיע שירות אישי שחוסך לו זמן ומבטיח לו 100% אמינות&quot;
         </p>
       </section>
 
@@ -36,26 +35,27 @@ export default function AboutPage() {
           <div className={styles.storyText}>
             <h2 className={styles.storyHeading}>שלום, שמי ערדית בראון</h2>
             <p className={styles.storyParagraph}>
-              יזמית עם מעל <strong>10 שנות ניסיון</strong> בחיבור בין אנשים לחלומות שלהם.
+              יזמית עם מעל <strong>10 שנות ניסיון</strong> בחיבורים בין אנשים לחלומות שלהם.
             </p>
             <p className={styles.storyParagraph}>
-              הכל התחיל מתסכול אישי: ראיתי איך אנשים מבזבזים שעות בחיפושים אינסופיים, רק כדי להתאכזב ממקום שלא תאם את התמונות והשאיפות שלהם.
+              מחברת משפחות, זוגות וקבוצות לוילות, צימרים, דירות נופש ומתחמי שבת חתן שמתאימים באמת לאנשים – לא רק לתמונות.
             </p>
+            
+            <h3 className={styles.storySubheading}>הכל התחיל בתקופת הקורונה</h3>
+            <p className={styles.storyParagraph}>
+              לפני כן עבדתי שנים מאחורי הקלעים – בהפקות, בעבודה עם אמני במה ובאירועים. ואז הגיעו הסגרים, ההפגנות, אירועים בוטלו – והעולם נעצר.
+            </p>
+            <p className={styles.storyParagraph}>
+              במקום לשבת בבית ולהגיד &quot;אין עבודה&quot;, שאלתי את עצמי: איך אני יכולה להשתמש בהיכרות שלי עם אנשים, לוקיישנים וקשרים – כדי לעזור למשפחות ולמצוא פרנסה מכובדת?
+            </p>
+            
             <div className={styles.quoteBox}>
               הקמתי את Multibrawn על עיקרון פשוט: לכל אדם מגיע שירות אישי שחוסך לו זמן ומבטיח לו 100% אמינות.
             </div>
-            <p className={styles.storyParagraph}>
-              היום אני גאה להוביל צוות מומחים שמכיר כל נכס באופן אישי. אנחנו לא "עוד פלטפורמה", אנחנו הסוכנים האישיים שלכם.
-            </p>
-            <p className={styles.storyParagraph}>
-              ההבטחה שלנו פשוטה: אנחנו מבצעים את כל הבדיקות, התיאומים והסינונים, כדי שלכם יישאר רק החלק המהנה - החוויה.
-            </p>
             
-            {/* Social Links */}
-            <div className={styles.socialSection}>
-              <h3 className={styles.socialHeading}>עקבו אחרינו</h3>
-              <SocialLinks />
-            </div>
+            <p className={styles.storyParagraph}>
+              לא כמפיקה, אלא כמי שמכירה את השטח, האנשים והמתחמים, ומחברת ביניהם בצורה חכמה, מדויקת ושקופה.
+            </p>
           </div>
         </div>
       </section>
@@ -82,88 +82,130 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* What Makes Us Different */}
-      <section className={styles.differenceSection}>
+      {/* What I Offer Section */}
+      <section className={styles.offerSection}>
         <div className={styles.contentContainer}>
-          <h2 className={styles.mainHeading}>מה מייחד את Multibrawn?</h2>
-          <h3 className={styles.subHeading}>למה לעבוד עם סוכן ולא לחפש לבד?</h3>
+          <h2 className={styles.mainHeading}>מה אני מציעה?</h2>
           
-          <p className={styles.problemParagraph}>
-            <strong>הבעיה שכולם מכירים:</strong> אתם מחפשים צימר לסופ&quot;ש רומנטי. פותחים 20 אתרים, קוראים 100 ביקורות, מתקשרים ל-15 מקומות, ובסוף - מגלים שהמקום &quot;המושלם&quot; בתמונות הוא בעצם דירה ישנה עם בריכה מוזנחת.
-          </p>
-          <p className={styles.problemHighlight}>נשמע מוכר?</p>
-
-          <h3 className={styles.solutionHeading}>הפתרון של Multibrawn:</h3>
-
-          <div className={styles.solutionGrid}>
-            <div className={styles.solutionBox}>
-              <h4>1. אנחנו מכירים כל נכס אישית</h4>
+          <div className={styles.offerGrid}>
+            <div className={styles.offerBox}>
+              <h3>התאמה אישית לנופש ואירועים</h3>
               <ul>
-                <li>לא סתם רשימה מהאינטרנט</li>
-                <li>ביקרנו, בדקנו, צילמנו בעצמנו</li>
-                <li>אנחנו יודעים מה רואים בתמונות ומה לא</li>
+                <li>וילות, צימרים, דירות נופש ומתחמים בכל הארץ</li>
+                <li>דגש על משפחות, זוגות ושבתות חתן</li>
+                <li>התאמה מיוחדת לציבור דתי וחרדי</li>
+                <li>בדיקה מדויקת: כמות חדרים, בריכה, פרטיות, כשרות, קרבה לבית כנסת</li>
               </ul>
             </div>
 
-            <div className={styles.solutionBox}>
-              <h4>2. חוסכים לכם זמן וכסף</h4>
+            <div className={styles.offerBox}>
+              <h3>ליווי אישי – לא עוד &quot;קבוצה של לינקים&quot;</h3>
               <ul>
-                <li>במקום 5 שעות חיפוש → כמה דקות שיחה</li>
-                <li>במקום לשלם על מקום שלא ראיתם → תמורה מלאה</li>
-                <li>במקום להתאכזב → 100% התאמה</li>
+                <li>אני שואלת שאלות: מי אתם? כמה נפשות? מה האופי? מה התקציב?</li>
+                <li>מתאימה רק מקומות שיש בהם היגיון עבורכם</li>
+                <li>לא מה שהכי נוצץ בתמונות – מה שבאמת מתאים</li>
               </ul>
             </div>
 
-            <div className={styles.solutionBox}>
-              <h4>3. שירות אישי עד הסוף</h4>
+            <div className={styles.offerBox}>
+              <h3>חיסכון בזמן, כסף ועצבים</h3>
               <ul>
-                <li>אין עמלות, אין עלויות נסתרות</li>
-                <li>משלמים למקום הלינה בלבד</li>
-                <li>השירות שלנו? מתנה!</li>
-              </ul>
-            </div>
-
-            <div className={styles.solutionBox}>
-              <h4>4. התאמה מדויקת</h4>
-              <ul>
-                <li>משפחה עם ילדים? משחקייה ובטיחות</li>
-                <li>זוג רומנטי? ג&apos;קוזי פרטי ונוף</li>
-                <li>קבוצת חברים? וילה עם ברביקיו</li>
+                <li>במקום להתרוצץ בין מאות מודעות וסוכנים</li>
+                <li>אני מסננת, מדברת עם בעלי המתחמים</li>
+                <li>מוודאת פרטים ומגישה רק הצעות רלוונטיות</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Comparison Section */}
-      <section className={styles.comparisonSection}>
+      {/* What Makes Me Different Section */}
+      <section className={styles.uniqueSection}>
         <div className={styles.contentContainer}>
-          <h2 className={styles.mainHeading}>למה אנשים בוחרים בנו?</h2>
+          <h2 className={styles.mainHeading}>מה מייחד אותי?</h2>
           
-          <div className={styles.compareGrid}>
-            <div className={styles.compareBoxNegative}>
-              <h3>תסריט א&apos; - ללא סוכן:</h3>
-              <ul>
-                <li>5 שעות חיפוש באינטרנט</li>
-                <li>15 שיחות טלפון</li>
-                <li>חוסר ודאות: &quot;האם זה באמת טוב?&quot;</li>
-                <li>מחיר מלא + סיכון להתאכזבות</li>
-                <li>לחץ והתלבטויות</li>
-              </ul>
+          <div className={styles.uniqueGrid}>
+            <div className={styles.uniqueBox}>
+              <h3>עבר של &quot;מאחורי הקלעים&quot;</h3>
+              <p>
+                מהעולם של ההפקות הבאתי איתי הבנה של לוגיסטיקה, אנשים, תזמון ופרטים קטנים שעושים את ההבדל בין &quot;יהיה בסדר&quot; לבין &quot;היה מושלם&quot;.
+              </p>
             </div>
 
-            <div className={styles.compareBoxPositive}>
-              <h3>תסריט ב&apos; - עם Multibrawn:</h3>
-              <ul>
-                <li>10 דקות שיחה אחת</li>
-                <li>3 אפשרויות מושלמות</li>
-                <li>ביטחון מלא: &quot;ערדית בדקה בעצמה&quot;</li>
-                <li>מחיר אטרקטיבי</li>
-                <li>רגועים ושמחים!</li>
-              </ul>
+            <div className={styles.uniqueBox}>
+              <h3>אני לא מפיקה – אני מחברת</h3>
+              <p>
+                אני לא מפיקה אירועים, לא מתערבת באוכל, לא מעצבת ולא מוכרת חלומות. התפקיד שלי ממוקד וברור: למצוא לכם את המקום הנכון – ולהגיד בכנות גם כשמשהו לא מתאים.
+              </p>
+            </div>
+
+            <div className={styles.uniqueBox}>
+              <h3>רגישות אמיתית לדתי/חרדי</h3>
+              <p>
+                אני יודעת כמה חשוב: כשרות, צניעות, טלוויזיות, מוזיקה, שבת, מניין, מרחק מהשכונה. אלה לא &quot;תוספות&quot; – זה חלק מהשירות.
+              </p>
+            </div>
+
+            <div className={styles.uniqueBox}>
+              <h3>קהילה ולא רק עסק</h3>
+              <p>
+                יש סביבי קהילות בפייסבוק, אינסטגרם וטיקטוק – שם אני משתפת מתחמים מומלצים, טעויות נפוצות, ואומרת ביושר כשמשהו לא נראה לי.
+              </p>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Who I Work With Section */}
+      <section className={styles.clientsSection}>
+        <div className={styles.contentContainer}>
+          <h2 className={styles.mainHeading}>עם מי אני עובדת?</h2>
+          
+          <div className={styles.clientsGrid}>
+            <div className={styles.clientCard}>
+              <div className={styles.clientIcon}>👨‍👩‍👧‍👦</div>
+              <h3>משפחות</h3>
+              <p>נופש, סופ&quot;שים, חגים וחופשות קיץ</p>
+            </div>
+
+            <div className={styles.clientCard}>
+              <div className={styles.clientIcon}>💍</div>
+              <h3>שבתות חתן ובר־מצווה</h3>
+              <p>במיוחד למשפחות דתיות וחרדיות</p>
+            </div>
+
+            <div className={styles.clientCard}>
+              <div className={styles.clientIcon}>💑</div>
+              <h3>זוגות</h3>
+              <p>חופשות, ימי נישואין, ימי הולדת</p>
+            </div>
+
+            <div className={styles.clientCard}>
+              <div className={styles.clientIcon}>👥</div>
+              <h3>קבוצות קטנות</h3>
+              <p>חברות, קבוצות נשים, חברותות, גיבושי צוות</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className={styles.ctaSection}>
+        <div className={styles.contentContainer}>
+          <h2 className={styles.ctaHeading}>איך ממשיכים מכאן?</h2>
+          <p className={styles.ctaParagraph}>
+            אם אתם מתכננים נופש, שבת חתן או חופשה משפחתית<br />
+            ורוצים לחסוך זמן, אכזבות וכאב ראש
+          </p>
+          <a href="/contact" className={styles.ctaButton}>
+            צרו קשר עכשיו
+          </a>
+        </div>
+      </section>
+
+      {/* Social Links */}
+      <section className={styles.socialSection}>
+        <SocialLinks />
       </section>
     </div>
   );
