@@ -448,3 +448,227 @@
   font-weight: 700;
   font-size: 1.2rem;
 }
+/* Add these new styles to About.module.css */
+
+/* === Story Subheading === */
+.storySubheading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+/* === Offer Section === */
+.offerSection {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.offerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.offerBox {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 94, 161, 0.1);
+  transition: all 0.3s ease;
+}
+
+.offerBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 94, 161, 0.15);
+  border-color: var(--color-pink);
+}
+
+.offerBox h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.offerBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.offerBox li {
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  position: relative;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.offerBox li::before {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  color: var(--color-pink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* === Unique Section === */
+.uniqueSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(248, 249, 250, 0.5));
+}
+
+.uniqueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.uniqueBox {
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.uniqueBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.uniqueBox h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-pink);
+}
+
+.uniqueBox p {
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+/* === Clients Section === */
+.clientsSection {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.clientsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.clientCard {
+  background: linear-gradient(135deg, rgba(255, 94, 161, 0.05), rgba(160, 107, 255, 0.05));
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.clientCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-pink);
+  box-shadow: 0 8px 20px rgba(255, 94, 161, 0.2);
+}
+
+.clientIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.clientCard h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.clientCard p {
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* === CTA Section === */
+.ctaSection {
+  padding: 5rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  text-align: center;
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.ctaParagraph {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background: white;
+  color: var(--color-pink);
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* === Social Section === */
+.socialSection {
+  padding: 3rem 2rem;
+  background: white;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .offerGrid,
+  .uniqueGrid,
+  .clientsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .offerBox,
+  .uniqueBox,
+  .clientCard {
+    padding: 2rem;
+  }
+
+  .ctaSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
