@@ -13,12 +13,11 @@ export default function Footer() {
         <div className={styles.logoSection}>
           <div className={styles.logo}>
             <Image
-              src="https://github.com/kfischi/MULTIBRAWN-V.1/raw/main/Gallery/לוגו2.png"
+              src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1765034116/Logo_1_dgyryu_e_background_removal_f_png_xpwl2w.png"
               alt="MULTIBRAWN Logo"
-              width={50}
-              height={50}
+              width={150}
+              height={60}
             />
-            <span className={styles.logoText}>MULTIBRAWN</span>
           </div>
         </div>
 
@@ -41,6 +40,16 @@ export default function Footer() {
         <Link href="/contact" className={styles.ctaButton}>
           הזמן עכשיו
         </Link>
+
+        {/* Multi-Site Credit */}
+        <div className={styles.creditSection}>
+          <p className={styles.creditText}>
+            אתר זה נבנה ע&quot;י <strong>Multi-Site</strong> - אתרים שבונים עסקים
+          </p>
+          <p className={styles.creditSubtext}>
+            מבית <strong>Multibrawn</strong>
+          </p>
+        </div>
 
         {/* Copyright */}
         <p className={styles.copyright}>
