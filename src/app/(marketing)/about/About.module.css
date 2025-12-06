@@ -503,7 +503,7 @@
 }
 
 .offerBox li {
-  padding: 0.7rem 0 0.7rem 1.5rem;
+  padding: 0.7rem 0 0.7rem 2rem;
   position: relative;
   line-height: 1.7;
   color: var(--color-text-secondary);
@@ -512,7 +512,8 @@
 .offerBox li::before {
   content: '✓';
   position: absolute;
-  right: 0;
+  right: auto;
+  left: 0;
   color: var(--color-pink);
   font-weight: 700;
   font-size: 1.1rem;
