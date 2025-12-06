@@ -12,12 +12,42 @@ export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
   const categories = [
-    { id: 'all', name: 'הכל', icon: '🏠' },
-    { id: 'villa', name: 'וילות', icon: '🏛️' },
-    { id: 'zimmer', name: 'צימרים', icon: '🏡' },
-    { id: 'apartment', name: 'דירות', icon: '🏙️' },
-    { id: 'hotel', name: 'מלונות', icon: '🏨' },
-    { id: 'event', name: 'אירועים', icon: '💍' },
+    { 
+      id: 'all', 
+      name: 'הכל', 
+      icon: '🏠',
+      description: '' 
+    },
+    { 
+      id: 'villa', 
+      name: 'וילות', 
+      icon: '🏛️',
+      description: 'וילות מרווחות ומפנקות עם בריכות פרטיות, גינות מטופחות ומתקנים לכל המשפחה. מושלם למשפחות גדולות, שבתות חתן ואירועים משפחתיים.' 
+    },
+    { 
+      id: 'zimmer', 
+      name: 'צימרים', 
+      icon: '🏡',
+      description: 'צימרים אינטימיים וחלומיים לזוגות ומשפחות. ג\'קוזי פרטי, נוף מרהיב ופרטיות מלאה. האפשרות המושלמת לסופ"ש רומנטי, חופשה משפחתית או חגיגה זוגית.' 
+    },
+    { 
+      id: 'apartment', 
+      name: 'דירות', 
+      icon: '🏙️',
+      description: 'דירות נופש מאובזרות במלואן במיקומים מרכזיים. מושלם למשפחות קטנות, זוגות או קבוצות חברים. קרוב לאטרקציות, חופים ומסעדות.' 
+    },
+    { 
+      id: 'hotel', 
+      name: 'מלונות', 
+      icon: '🏨',
+      description: 'מלונות בוטיק ויוקרתיים עם שירות אישי ברמה הגבוהה ביותר. ארוחות בוקר עשירות, ספא, בריכות מחוממות וחוויה בלתי נשכחת.' 
+    },
+    { 
+      id: 'event', 
+      name: 'אירועים', 
+      icon: '💍',
+      description: 'מתחמים ייחודיים לשבתות חתן, בר/בת מצווה ואירועים משפחתיים. כולל אולמות, חצרות מרווחות, מטבחים כשרים ואפשרות לינה לעשרות אורחים.' 
+    },
   ];
 
   const galleryItems = {
@@ -95,19 +125,98 @@ export default function GalleryPage() {
             className={`${styles.filterBtn} ${selectedCategory === cat.id ? styles.active : ''}`}
             onClick={() => setSelectedCategory(cat.id)}
           >
-            {cat.icon} {cat.name}
+            {cat.id === 'all' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            )}
+            {cat.id === 'villa' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            )}
+            {cat.id === 'zimmer' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            )}
+            {cat.id === 'apartment' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <path d="M9 22V12h6v10"/>
+              </svg>
+            )}
+            {cat.id === 'hotel' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            )}
+            {cat.id === 'event' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="8" r="7"/>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+              </svg>
+            )}
+            <span>{cat.name}</span>
           </button>
         ))}
       </div>
 
       {/* Gallery Grid */}
       <div className={styles.gallerySection}>
-        {getFilteredItems().map(({ category, items }) => (
-          <div key={category} className={styles.categorySection}>
-            <h2 className={styles.categoryTitle}>
-              {categories.find(c => c.id === category)?.icon} {categories.find(c => c.id === category)?.name}
-            </h2>
-            <div className={styles.galleryRow}>
+        {getFilteredItems().map(({ category, items }) => {
+          const categoryData = categories.find(c => c.id === category);
+          return (
+            <div key={category} className={styles.categorySection}>
+              <div className={styles.categoryHeader}>
+                <div className={styles.categoryIconWrapper}>
+                  {categoryData?.id === 'villa' && (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  )}
+                  {categoryData?.id === 'zimmer' && (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                  )}
+                  {categoryData?.id === 'apartment' && (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                      <path d="M9 22V12h6v10"/>
+                    </svg>
+                  )}
+                  {categoryData?.id === 'hotel' && (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  )}
+                  {categoryData?.id === 'event' && (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="8" r="7"/>
+                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                    </svg>
+                  )}
+                </div>
+                <h2 className={styles.categoryTitle}>
+                  {categoryData?.name}
+                </h2>
+              </div>
+              {categoryData?.description && (
+                <p className={styles.categoryDescription}>
+                  {categoryData.description}
+                </p>
+              )}
+              <div className={styles.galleryRow}>
               {items.map((item, idx) => (
                 <div
                   key={idx}
@@ -135,7 +244,8 @@ export default function GalleryPage() {
               ))}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Modal */}
