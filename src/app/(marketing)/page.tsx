@@ -149,7 +149,7 @@ export default function HomePage() {
                   <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h3>ניסיון של 9+ שנים</h3>
+              <h3>ניסיון של 10+ שנים</h3>
               <p>מומחיות מוכחת במציאת הלוקיישנים הטובים ביותר בישראל</p>
             </div>
 
@@ -162,8 +162,8 @@ export default function HomePage() {
                   <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h3>1000+ לקוחות מרוצים</h3>
-              <p>אלפי לקוחות שמצאו את החופשה המושלמת דרכנו</p>
+              <h3>500+ לקוחות מרוצים</h3>
+              <p>לקוחות שמצאו את החופשה המושלמת דרכנו</p>
             </div>
 
             <div className={styles.featureCard}>
@@ -184,8 +184,8 @@ export default function HomePage() {
                   <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h3>שירות אישי 24/7</h3>
-              <p>ערדית והצוות שלנו זמינים בכל שעה לעזור לכם</p>
+              <h3>שירות אישי ומקצועי</h3>
+              <p>זמינים עבורכם בוואטסאפ לכל שאלה</p>
             </div>
           </div>
         </div>
@@ -374,7 +374,7 @@ export default function HomePage() {
             <div className={styles.testimonialCard}>
               <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
               <p className={styles.testimonialText}>
-                "אחרי שנים של חיפושים, סוף סוף מצאנו את הצימר המושלם לחופשה משפחתית. תודה ערדית!"
+                "אחרי ניסיונות רבים בחיפושים סוף סוף מצאנו את הצימר המושלם לחופשה משפחתית. תודה ערדית!"
               </p>
               <div className={styles.testimonialAuthor}>
                 <strong>דני לוי</strong>
@@ -414,7 +414,7 @@ export default function HomePage() {
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              פתחו שיחה עם ערדית
+              דברו עם ערדית - הצ'אטבוט שלנו
             </button>
             <Link href="https://wa.me/972523983394" className={`${styles.ctaBtn} ${styles.ctaBtnSecondary}`} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
