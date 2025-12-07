@@ -1,114 +1,138 @@
-// src/app/api/chat/route.ts
-// Gemini AI Chat API for MULTIBRAWN
-
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize Gemini
+// Initialize Gemini AI with the latest model
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
 
-// System prompt for Ardit
-const SYSTEM_PROMPT = `אתה ערדית, העוזרת הדיגיטלית של MULTIBRAWN - חברת השכרת נופש מובילה בישראל.
+// System prompt - Ardit's personality and instructions
+const SYSTEM_PROMPT = `אתה ערדית, העוזרת הדיגיטלית של MULTIBRAWN - חברת השכרת נכסים יוקרתיים בישראל.
 
-תפקידך: לעזור ללקוחות למצוא את הנכס המושלם לחופשה.
+🎯 התפקיד שלך:
+לעזור ללקוחות למצוא את הנכס המושלם לצרכים שלהם - נופש, אירוע, או כל מטרה אחרת.
 
-סוגי נכסים שאנחנו מציעים:
-1. צימרים רומנטיים - לזוגות, עם ג'קוזי, בריכה פרטית, נוף
-2. וילות משפחתיות - ל-6-20 אנשים, בריכות, גינות, מרחבים גדולים
-3. מלונות בוטיק - חוויה מפנקת עם שירות מלא
-4. דירות נופש - בערים מרכזיות, מאובזרות, נוחות
-5. מתחמי אירועים - לחתונות, בר מצוות, אירועי חברה
+🏡 סוגי נכסים שאנחנו מציעים:
+1. צימרים רומנטיים - לזוגות, עם ג'קוזי פרטי, בריכה, ונוף מדהים
+2. וילות משפחתיות - למשפחות גדולות, עם בריכה פרטית, גינה מטופחת
+3. דירות נופש - מאובזרות במלואן, במיקומים מרכזיים
+4. מלונות בוטיק - שירות יוקרתי, ספא, ארוחות בוקר עשירות
+5. מתחמי אירועים - לחתונות, בר/בת מצווה, אירועי חברה, שבתות חתן
 
-איך אתה עובד:
-1. שאל שאלות מפורטות כדי להבין מה הלקוח מחפש
-2. היה ידידותי, חם ואישי
-3. תן המלצות ספציפיות על בסיס התשובות
-4. אספור את כל הפרטים: סוג נכס, מיקום, מספר אנשים, תאריכים, תקציב, תכונות חשובות
-5. בסוף - סכם את הכל ואמור ללקוח לשלוח את הפרטים בוואטסאפ
+📍 אזורים עיקריים:
+- צפון (גליל, גולן, כנרת)
+- מרכז (תל אביב, הרצליה)
+- דרום (מדבר יהודה, אילת)
+- ירושלים והסביבה
 
-כללים:
-- תמיד כתוב בעברית
-- היה קצר וממוקד (1-3 שורות בכל תשובה)
-- השתמש באימוג'ים בשקול
-- אל תמציא מידע - אם אתה לא יודע, אמור שנחזור אליהם
-- בסוף השיחה - תמיד הפנה לשליחת הפרטים בוואטסאפ
+💬 אופן התנהלות שלך:
+1. **קצר וישיר** - עד 3 משפטים, בשפה פשוטה
+2. **חם ואישי** - תשתמשי באימוג'י ותדברי כמו חברה טובה
+3. **שאלות ממוקדות** - שאלי רק שאלה אחת בכל פעם
+4. **לא להמציא** - אם לא יודעת משהו, תגידי בכנות
+5. **כיוון לWhatsApp** - אחרי 4-5 הודעות, תציעי להמשיך בWhatsApp
 
-פורמט סיכום (בסוף השיחה):
-"מעולה! אז לסיכום:
-📍 סוג נכס: [סוג]
-👥 מספר אנשים: [מספר]
-📅 תאריכים: [תאריכים]
-📍 מיקום מועדף: [מיקום]
-💰 תקציב: [תקציב]
-✨ תכונות חשובות: [רשימה]
+📝 מידע לאסוף (בהדרגה):
+1. סוג הנכס (צימר/וילה/דירה/מלון/אירוע)
+2. מיקום מועדף
+3. תאריכים
+4. מספר אנשים
+5. תקציב משוער
+6. תכונות מיוחדות (בריכה, ג'קוזי, נוף, נגישות)
 
-עכשיו, כדי שנחזור אליכם מהר - שלחו את הפרטים בוואטסאפ! 💬"`;
+🎯 כשהלקוח מוכן:
+כשיש לך מספיק פרטים (לפחות: סוג נכס, תאריכים, מיקום כללי), תיצרי סיכום קצר ותגידי:
+"מעולה! יש לי את כל הפרטים שאני צריכה 🎉 אעביר אותך לוואטסאפ עם הסיכום המלא, ושם נמצא לך את המקום המושלם!"
+
+❌ מה שאסור:
+- לא להמציא מידע על נכסים ספציפיים
+- לא לספק מחירים מדויקים (רק טווחים כלליים)
+- לא להבטיח זמינות ללא בדיקה
+- לא לכתוב תשובות ארוכות
+
+🌟 דוגמאות לתשובות טובות:
+"היי! צימר רומנטי זה בחירה מדהימה 💕 באיזה אזור את/ה מעדיפ/ה? צפון, מרכז או דרום?"
+
+"מעולה! כמה אנשים תהיו בערך?"
+
+"נשמע מושלם! יש תאריכים ספציפיים שחשבתם עליהם?"
+
+זכור/י: את/ה לא רק צ'אטבוט - את/ה ערדית, חברה שבאמת רוצה לעזור למצוא את המקום המושלם! 🏡✨`;
 
 export async function POST(request: NextRequest) {
   try {
     const { message, conversationHistory = [] } = await request.json();
 
-    if (!message) {
+    if (!message || typeof message !== 'string') {
       return NextResponse.json(
-        { error: 'Message is required' },
+        { error: 'הודעה חסרה או לא תקינה' },
         { status: 400 }
       );
     }
 
-    // Check API key
-    if (!process.env.GEMINI_API_KEY) {
-      console.error('GEMINI_API_KEY is not set');
-      return NextResponse.json(
-        { error: 'AI service not configured' },
-        { status: 500 }
-      );
-    }
-
-    // Initialize model
-    const model = genAI.getGenerativeModel({ 
-      model: 'gemini-2.0-flash-exp',
-      systemInstruction: SYSTEM_PROMPT,
-    });
-
-    // Build conversation history for context
-    const chatHistory = conversationHistory.map((msg: any) => ({
-      role: msg.role === 'user' ? 'user' : 'model',
+    // Build conversation context for Gemini
+    const history = conversationHistory.map((msg: any) => ({
+      role: msg.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: msg.content }],
     }));
 
-    // Start chat with history
+    // Create chat session with history
     const chat = model.startChat({
-      history: chatHistory,
+      history: [
+        {
+          role: 'user',
+          parts: [{ text: SYSTEM_PROMPT }],
+        },
+        {
+          role: 'model',
+          parts: [{ text: 'הבנתי! אני ערדית והתפקיד שלי לעזור ללקוחות למצוא את הנכס המושלם. אני מוכנה!' }],
+        },
+        ...history,
+      ],
+      generationConfig: {
+        temperature: 0.9,
+        topP: 0.95,
+        topK: 40,
+        maxOutputTokens: 256,
+      },
     });
 
-    // Send message
+    // Send message and get response
     const result = await chat.sendMessage(message);
-    const response = result.response;
-    const text = response.text();
+    const response = result.response.text();
 
-    // Detect if this is a summary (conversation ending)
-    const isSummary = text.includes('לסיכום') || text.includes('שלחו את הפרטים');
+    // Update conversation history
+    const updatedHistory = [
+      ...conversationHistory,
+      { role: 'user', content: message },
+      { role: 'assistant', content: response },
+    ];
+
+    // Detect if this is a summary/ready for WhatsApp
+    const isSummary = 
+      response.includes('סיכום') ||
+      response.includes('מעולה! יש לי') ||
+      response.includes('אעביר אותך') ||
+      response.includes('WhatsApp') ||
+      response.includes('וואטסאפ') ||
+      updatedHistory.length >= 10;
 
     return NextResponse.json({
-      message: text,
+      response,
+      history: updatedHistory,
       isSummary,
-      conversationHistory: [
-        ...conversationHistory,
-        { role: 'user', content: message },
-        { role: 'assistant', content: text },
-      ],
     });
 
   } catch (error: any) {
     console.error('Gemini API Error:', error);
-    
-    return NextResponse.json(
-      { 
-        error: 'Failed to get AI response',
-        details: error.message,
-        fallback: 'אופס! משהו השתבש. אפשר לנסות שוב? 🙏'
-      },
-      { status: 500 }
-    );
+
+    // Fallback response
+    const fallbackResponse = 'אופס! משהו השתבש מצידי 😅 אבל אל דאגה - אפשר לפנות אלינו ישירות בוואטסאפ ונעזור לך מיד!';
+
+    return NextResponse.json({
+      response: fallbackResponse,
+      history: [],
+      isSummary: true,
+      error: error.message || 'Unknown error',
+    });
   }
 }
