@@ -406,8 +406,13 @@ export default function HomePage() {
           <div className={styles.ctaBtnGroup}>
             <button 
               onClick={() => {
-                const chatBot = document.querySelector('[data-chatbot]');
-                if (chatBot) (chatBot as HTMLElement).click();
+                // Find chat button and click it
+                const chatButton = document.querySelector('[data-chatbot]') as HTMLButtonElement;
+                if (chatButton) {
+                  chatButton.click();
+                } else {
+                  console.error('Chat button not found!');
+                }
               }}
               className={`${styles.ctaBtn} ${styles.ctaBtnPrimary}`}
             >
