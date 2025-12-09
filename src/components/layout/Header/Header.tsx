@@ -33,10 +33,10 @@ export default function Header() {
         <Link href="/" className={styles.logo}>
           <img 
             src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1765034116/Logo_1_dgyryu_e_background_removal_f_png_xpwl2w.png"
-            alt="MULTIBRAWN מולטיבראון"
+            alt="MULTIBRAWN"
             className={styles.logoImage}
           />
-          <span className={styles.logoSubtext}>מולטיבראון</span>
+          <span className={styles.logoText}>MULTIBRAWN</span>
         </Link>
 
         {/* Desktop Navigation */}
