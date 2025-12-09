@@ -2,91 +2,76 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'דף הבית' },
+    { href: '/', label: 'בית' },
     { href: '/gallery', label: 'גלריה' },
-    { href: '/tips', label: 'טיפים חשובים' },
+    { href: '/tips', label: 'טיפים' },
     { href: '/about', label: 'אודות' },
+    { href: '/contact', label: 'צור קשר' },
   ];
 
   return (
-    <header className={`${styles.mainHeader} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        {/* Logo */}
+        {/* Logo - BIGGER */}
         <Link href="/" className={styles.logo}>
-          <Image
-            src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1765034116/Logo_1_dgyryu_e_background_removal_f_png_xpwl2w.png"
-            alt="MULTIBRAWN Logo"
-            width={180}
-            height={70}
-            className={styles.logoImg}
-          />
           <span className={styles.logoText}>MULTIBRAWN</span>
+          <span className={styles.logoSubtext}>מולטיבראון</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={styles.navLinks}>
+        <nav className={styles.desktopNav}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={styles.navLink}
+              className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
             >
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className={styles.navCta}>
-            צור קשר
-          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className={styles.menuToggle}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className={styles.menuButton}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="תפריט"
         >
-          <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+          <span className={`${styles.menuIcon} ${isMenuOpen ? styles.open : ''}`}></span>
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
+      {isMenuOpen && (
         <div className={styles.mobileMenu}>
           <nav className={styles.mobileNav}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={styles.mobileNavLink}
-                onClick={() => setIsMobileMenuOpen(false)}
+                className={`${styles.mobileNavLink} ${pathname === link.href ? styles.active : ''}`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className={styles.mobileCtaButton}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              צור קשר
-            </Link>
           </nav>
         </div>
       )}
