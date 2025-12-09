@@ -30,9 +30,9 @@
 /* Logo Image */
 .logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 12px;
   text-decoration: none;
   transition: transform 0.3s ease;
 }
@@ -47,12 +47,12 @@
   object-fit: contain;
 }
 
-.logoSubtext {
-  font-size: 11px;
-  color: #8e8e9e;
-  font-weight: 600;
-  text-align: center;
+.logoText {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a0b2e;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* Desktop Navigation */
@@ -223,8 +223,8 @@
     height: 85px;
   }
   
-  .logoSubtext {
-    font-size: 13px;
+  .logoText {
+    font-size: 24px;
   }
 }
 
@@ -236,11 +236,11 @@
   }
 
   .logoImage {
-    height: 55px;
+    height: 50px;
   }
   
-  .logoSubtext {
-    font-size: 10px;
+  .logoText {
+    font-size: 16px;
   }
 }
 
