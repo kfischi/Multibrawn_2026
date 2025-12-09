@@ -30,7 +30,9 @@
 /* Logo Image */
 .logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 2px;
   text-decoration: none;
   transition: transform 0.3s ease;
 }
@@ -40,9 +42,17 @@
 }
 
 .logoImage {
-  height: 60px;
+  height: 70px;
   width: auto;
   object-fit: contain;
+}
+
+.logoSubtext {
+  font-size: 11px;
+  color: #8e8e9e;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 /* Desktop Navigation */
@@ -210,7 +220,11 @@
 
 @media (min-width: 1024px) {
   .logoImage {
-    height: 70px;
+    height: 85px;
+  }
+  
+  .logoSubtext {
+    font-size: 13px;
   }
 }
 
@@ -222,7 +236,11 @@
   }
 
   .logoImage {
-    height: 50px;
+    height: 55px;
+  }
+  
+  .logoSubtext {
+    font-size: 10px;
   }
 }
 
