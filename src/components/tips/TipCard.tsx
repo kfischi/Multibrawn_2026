@@ -4,103 +4,75 @@ import { useState } from 'react';
 import styles from './TipCard.module.css';
 
 interface TipCardProps {
-  id: string;
-  title: string;
-  thumbnail: string;
-  videoUrl: string;
-  duration: string;
-  views: string;
-  description: string;
-  category: string;
-  featured?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  tip: {
+    id: string;
+    title: string;
+    description: string;
+    videoUrl: string;
+    thumbnail: string;
+    duration: string;
+    category: string;
+  };
 }
 
-export default function TipCard({
-  id,
-  title,
-  thumbnail,
-  videoUrl,
-  duration,
-  views,
-  description,
-  category,
-  featured = false,
-  size = 'medium',
-}: TipCardProps) {
+export default function TipCard({ tip }: TipCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const categoryLabels: Record<string, string> = {
-    planning: 'תכנון',
-    romantic: 'רומנטי',
-    family: 'משפחתי',
-    budget: 'תקציב',
-  };
 
   const handlePlay = () => {
     setIsPlaying(true);
   };
 
   return (
-    <div
-      className={`${styles.card} ${styles[size]} ${featured ? styles.featured : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={styles.imageContainer}>
+    <div className={styles.card}>
+      {/* Video Player - EMBEDDED! */}
+      <div className={styles.videoContainer}>
         {!isPlaying ? (
-          <>
+          // Thumbnail + Play Button
+          <div className={styles.thumbnail} onClick={handlePlay}>
             <img
-              src={thumbnail}
-              alt={title}
-              className={styles.image}
+              src={tip.thumbnail}
+              alt={tip.title}
+              className={styles.thumbnailImage}
             />
-            
-            <div className={styles.gradientOverlay}></div>
-            <div className={styles.duration}>{duration}</div>
-            <div className={styles.category}>{categoryLabels[category]}</div>
-            
-            {/* Play Button */}
-            <button
-              className={`${styles.playButton} ${isHovered ? styles.visible : ''}`}
-              onClick={handlePlay}
-              aria-label="נגן סרטון"
-            >
-              <svg width="60" height="60" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" fill="rgba(0, 0, 0, 0.7)" />
-                <polygon points="10,8 16,12 10,16" fill="white" />
-              </svg>
-            </button>
-          </>
+            <div className={styles.playOverlay}>
+              <button className={styles.playButton} aria-label="נגן וידאו">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            </div>
+            <div className={styles.duration}>{tip.duration}</div>
+            <div className={styles.category}>{tip.category}</div>
+          </div>
         ) : (
+          // Video Player - PLAYS IN CARD!
           <div className={styles.videoWrapper}>
             <video
-              src={videoUrl}
+              src={tip.videoUrl}
               controls
               autoPlay
               className={styles.video}
-              playsInline
+              onEnded={() => setIsPlaying(false)}
             >
-              הדפדפן שלך לא תומך בסרטונים.
+              הדפדפן שלך לא תומך בהצגת וידאו.
             </video>
           </div>
         )}
       </div>
-      
+
+      {/* Content */}
       <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.description}>{description}</p>
+        <h3 className={styles.title}>{tip.title}</h3>
+        <p className={styles.description}>{tip.description}</p>
         
-        <div className={styles.meta}>
-          <span className={styles.views}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
+        {!isPlaying && (
+          <button className={styles.watchButton} onClick={handlePlay}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
             </svg>
-            {views} צפיות
-          </span>
-        </div>
+            צפה עכשיו
+          </button>
+        )}
       </div>
     </div>
   );
