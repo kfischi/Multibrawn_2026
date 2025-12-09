@@ -1,107 +1,257 @@
+/* Property Card Styles - WITH CAROUSEL */
+
 .card {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 224, 255, 0.2);
 }
 
-.imageContainer {
+/* Image Section */
+.imageSection {
   position: relative;
   width: 100%;
-  padding-top: 66.67%;
-  overflow: hidden;
-  cursor: pointer;
+  background: #f0f0f0;
 }
 
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.mainImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.card:hover .image {
-  transform: scale(1.1);
+.mainImage:hover {
+  transform: scale(1.05);
 }
 
-.overlay {
+/* Navigation Arrows */
+.navButton {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-}
-
-.typeBadge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: linear-gradient(135deg, #00d4ff 0%, #9d4edd 100%);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.locationBadge {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #1e293b;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  opacity: 0;
+  z-index: 2;
 }
 
-.mediaCount {
+.imageWrapper:hover .navButton {
+  opacity: 1;
+}
+
+.navButton:hover {
+  background: rgba(0, 224, 255, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navButton.prev {
+  left: 12px;
+}
+
+.navButton.next {
+  right: 12px;
+}
+
+/* Image Counter */
+.imageCounter {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 12px;
+  right: 12px;
   background: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+/* Thumbnails - SCROLLABLE! */
+.thumbnails {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 224, 255, 0.3) transparent;
+}
+
+.thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(0, 224, 255, 0.3);
+  border-radius: 2px;
+}
+
+.thumbnails::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 224, 255, 0.5);
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 60px;
+  height: 45px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  padding: 0;
+}
+
+.thumbnail:hover {
+  border-color: rgba(0, 224, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.thumbnail.active {
+  border-color: #00E0FF;
+  box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.moreThumbnail {
+  background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+}
+
+.moreThumbnail:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 224, 255, 0.4);
+}
+
+.moreText {
+  display: block;
+}
+
+/* Video Badge */
+.videoBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 0, 110, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
+.videoBadge:hover {
+  background: #FF006E;
+  transform: scale(1.05);
+}
+
+/* Content */
 .content {
-  padding: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
 }
 
-.name {
-  font-size: 20px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title {
+  font-size: 22px;
   font-weight: 700;
-  color: #1e293b;
-  margin: 0 0 8px 0;
+  color: #1a0b2e;
+  margin: 0;
+  flex: 1;
+}
+
+.type {
+  background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.location,
+.guests {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4a4a68;
+  font-size: 15px;
+}
+
+.location svg,
+.guests svg {
+  color: #00E0FF;
+  flex-shrink: 0;
 }
 
 .description {
-  font-size: 14px;
-  color: #64748b;
+  color: #4a4a68;
+  font-size: 15px;
   line-height: 1.6;
-  margin: 0 0 16px 0;
+  margin: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -110,84 +260,108 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
 }
 
 .feature {
-  background: #f1f5f9;
-  color: #475569;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
+  background: rgba(0, 224, 255, 0.1);
+  color: #2D7FFF;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 500;
 }
 
-.moreFeatures {
-  background: linear-gradient(135deg, #00d4ff 0%, #9d4edd 100%);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
+.featureMore {
+  background: rgba(160, 107, 255, 0.1);
+  color: #A06BFF;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 600;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid #e2e8f0;
-}
-
-.price {
-  font-size: 14px;
-  color: #64748b;
-}
-
-.price strong {
-  color: #1e293b;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.ctaButton {
-  background: linear-gradient(135deg, #00d4ff 0%, #9d4edd 100%);
+.viewButton {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: 50px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+  margin-top: auto;
 }
 
-.ctaButton:hover {
+.viewButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 224, 255, 0.3);
 }
 
+/* Mobile */
 @media (max-width: 768px) {
+  .imageWrapper {
+    height: 240px;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navButton.prev {
+    left: 8px;
+  }
+
+  .navButton.next {
+    right: 8px;
+  }
+
+  .imageCounter {
+    font-size: 11px;
+    padding: 5px 10px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .thumbnails {
+    padding: 10px 8px;
+    gap: 6px;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 38px;
+  }
+
+  .videoBadge {
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
   .content {
-    padding: 16px;
+    padding: 20px;
+    gap: 14px;
   }
 
-  .name {
-    font-size: 18px;
+  .title {
+    font-size: 20px;
   }
 
-  .footer {
-    flex-direction: column;
-    align-items: stretch;
+  .type {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 
-  .ctaButton {
-    width: 100%;
-    justify-content: center;
+  .description {
+    font-size: 14px;
+  }
+
+  .viewButton {
+    padding: 12px;
+    font-size: 15px;
   }
 }
