@@ -8,12 +8,13 @@
       "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828299/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_zo14ig.png",
       "duration": "1:30",
       "views": "8.2K",
-      "description": "טיפים חשובים לתכנון שבת חתן מושלמת",
+      "description": "טיפים חשובים לתכנון שבת חתן מושלמת - כל מה שצריך לדעת",
       "content": [
-        "בחירת מקום שקט ופרטי",
-        "תכנון פעילויות מהנות",
-        "ארוחות איכותיות",
-        "אטרקציות באזור"
+        "בחירת מקום שקט ופרטי עם מספיק חדרים",
+        "תכנון פעילויות מהנות לכל המשפחה",
+        "ארוחות איכותיות והתאמה לכשרות",
+        "אטרקציות באזור למי שרוצה לצאת",
+        "תיאום מראש עם בעל המקום על כל הפרטים"
       ],
       "videoUrl": "https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684490/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_gamaqi.mp4",
       "featured": true
@@ -26,12 +27,13 @@
       "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828638/%D7%96%D7%95%D7%9C_t7cops.png",
       "duration": "2:15",
       "views": "15.3K",
-      "description": "איך למצוא עסקאות משתלמות ולחסוך כסף",
+      "description": "איך למצוא עסקאות משתלמות ולחסוך כסף בלי לוותר על איכות",
       "content": [
-        "מתי כדאי להזמין",
-        "איך למצוא מבצעים",
-        "על מה אפשר לוותר",
-        "טיפים לחיסכון"
+        "מתי כדאי להזמין - מחירים משתנים לפי עונה",
+        "איך למצוא מבצעים אמיתיים ולא ליפול למלכודות",
+        "על מה אפשר לוותר ועל מה אסור",
+        "טיפים לחיסכון בלי לפגוע בחוויה",
+        "לבדוק מה כלול במחיר ומה עולה בנפרד"
       ],
       "videoUrl": "https://res.cloudinary.com/dptyfvwyo/video/upload/v1763718107/%D7%96%D7%95%D7%9C_lcwakc.mp4",
       "featured": true
@@ -40,16 +42,17 @@
       "id": "3",
       "title": "נוסעים לאילת? שימו לב",
       "slug": "eilat-tips",
-      "category": "planning",
+      "category": "destinations",
       "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828637/%D7%90%D7%99%D7%9C%D7%AA_rtmczk.png",
       "duration": "1:45",
       "views": "12.7K",
-      "description": "כל מה שצריך לדעת לפני נסיעה לאילת",
+      "description": "כל מה שצריך לדעת לפני נסיעה לאילת - חיסכון וטיפים",
       "content": [
-        "מתי העונה הטובה ביותר",
-        "מה לקחת איתכם",
-        "אטרקציות מומלצות",
-        "טיפים לחיסכון באילת"
+        "מתי העונה הטובה ביותר - חום, מחירים וזמינות",
+        "מה לקחת איתכם - רשימת ציוד מומלצת",
+        "אטרקציות מומלצות למשפחות וזוגות",
+        "טיפים לחיסכון באילת - היכן כדאי לאכול",
+        "להזמין מראש או במקום? מה משתלם יותר"
       ],
       "videoUrl": "https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684426/%D7%90%D7%99%D7%9C%D7%AA_ba7jjj.mp4",
       "featured": true
@@ -62,15 +65,224 @@
       "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
       "duration": "3:00",
       "views": "18.9K",
-      "description": "5 דברים שחייבים לבדוק לפני ההזמנה",
+      "description": "5 דברים שחייבים לבדוק לפני ההזמנה - אל תיפלו למלכודות",
       "content": [
-        "בדיקת תמונות אמיתיות",
-        "קריאת ביקורות",
-        "בדיקת מדיניות ביטולים",
-        "וידוא גודל המקום",
-        "בדיקת ציוד ומתקנים"
+        "בדיקת תמונות אמיתיות - לבקש תמונות עדכניות",
+        "קריאת ביקורות - לא רק הכוכבים, גם התוכן",
+        "בדיקת מדיניות ביטולים - מה קורה אם משהו משתנה",
+        "וידוא גודל המקום - כמה באמת נכנסים",
+        "בדיקת ציוד ומתקנים - מה כלול ומה צריך להביא"
       ],
       "videoUrl": "https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684101/Video3_omgivy.mp4",
+      "featured": false
+    },
+    {
+      "id": "5",
+      "title": "צימר רומנטי - על מה לא לוותר",
+      "slug": "romantic-zimmer",
+      "category": "accommodations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:00",
+      "views": "10.5K",
+      "description": "המאפיינים החשובים ביותר לחופשה זוגית מושלמת",
+      "content": [
+        "פרטיות מלאה - לא צימר בחצר של מישהו",
+        "ג'קוזי ספא פרטי - לא משותף!",
+        "מיטה זוגית איכותית - זה משנה הכל",
+        "נוף יפה ואווירה רומנטית",
+        "קרבה למסעדות טובות לארוחת ערב"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "6",
+      "title": "וילה משפחתית - המדריך המלא",
+      "slug": "family-villa-guide",
+      "category": "accommodations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:30",
+      "views": "14.2K",
+      "description": "איך לבחור וילה שתתאים למשפחה שלכם - גדלים, מתקנים ובטיחות",
+      "content": [
+        "גודל מתאים - 1.5 חדר לכל 4 נפשות",
+        "בריכה פרטית ובטוחה לילדים",
+        "מטבח מאובזר לארוחות משפחתיות",
+        "חצר גדולה עם משחקים",
+        "קרבה לאטרקציות מתאימות לילדים"
+      ],
+      "videoUrl": "",
+      "featured": true
+    },
+    {
+      "id": "7",
+      "title": "מתחם אירועים - השאלות החשובות",
+      "slug": "event-venue-questions",
+      "category": "events",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:45",
+      "views": "9.8K",
+      "description": "רשימת שאלות שחייבים לשאול לפני הזמנת מתחם",
+      "content": [
+        "קיבולת - כמה אורחים באמת נכנסים בנוח",
+        "מה כלול במחיר - חשמל, מים, ניקיון",
+        "האם יש מטבח כשר ומאובזר",
+        "מדיניות רעש - עד איזו שעה מותר מוזיקה",
+        "חניה - כמה מקומות יש ואיפה"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "8",
+      "title": "מלון בוטיק או צימר? מה ההבדל",
+      "slug": "boutique-hotel-vs-zimmer",
+      "category": "accommodations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:00",
+      "views": "11.3K",
+      "description": "יתרונות וחסרונות של כל אחד - מה מתאים לכם יותר",
+      "content": [
+        "מלון בוטיק - שירות, ארוחות בוקר, פינוקים",
+        "צימר - פרטיות מלאה, גמישות בשעות",
+        "הבדלי מחיר - מתי כדאי כל אחד",
+        "למי מתאים מלון ולמי צימר",
+        "איך לבחור לפי הצרכים שלכם"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "9",
+      "title": "צפון - האזורים הכי מומלצים",
+      "slug": "north-israel-areas",
+      "category": "destinations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "3:15",
+      "views": "16.7K",
+      "description": "מדריך מפורט לאזורים השונים בצפון - מה מתאים לכם",
+      "content": [
+        "רמת הגולן - נופים, יקבים, שלווה",
+        "הגליל העליון - טבע, מסלולי טיול",
+        "כנרת - חופים, אטרקציות מים",
+        "צפת - אמנות, רוחניות, אווירה מיוחדת",
+        "נהריה וסביבתה - קרוב לים וטיולים"
+      ],
+      "videoUrl": "",
+      "featured": true
+    },
+    {
+      "id": "10",
+      "title": "מרכז - לא רק תל אביב",
+      "slug": "center-israel-guide",
+      "category": "destinations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:30",
+      "views": "8.9K",
+      "description": "אפשרויות נופש במרכז שלא חשבתם עליהן",
+      "content": [
+        "השפלה - טבע קרוב, מחירים נוחים",
+        "הרי יהודה - מצודות, יקבים, נופים",
+        "בקעת אונו - קרוב לכל מקום",
+        "ירושלים והסביבה - היסטוריה ותרבות",
+        "חוף הים - הרצליה, בת ים, אשדוד"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "11",
+      "title": "דרום - המדבר קורא לכם",
+      "slug": "south-israel-desert",
+      "category": "destinations",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:45",
+      "views": "12.1K",
+      "description": "חוויות ייחודיות במדבר - מצפה רמון, ערבה ועוד",
+      "content": [
+        "מצפה רמון - המכתש, צימרים במדבר",
+        "ערבה - שקט, כוכבים, חוויה ייחודית",
+        "אילת - ים, שמש, פעילויות מים",
+        "ים המלח - ספא, בוץ, בריאות",
+        "הנגב - טיולים, ג'יפים, בדואים"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "12",
+      "title": "בריכה פרטית - מה חשוב לדעת",
+      "slug": "private-pool-tips",
+      "category": "amenities",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:00",
+      "views": "15.4K",
+      "description": "שאלות חשובות על בריכה פרטית - חימום, ניקיון, בטיחות",
+      "content": [
+        "בריכה מחוממת - כמה עולה ומתי צריך",
+        "גודל הבריכה - האם מתאים למספר האורחים",
+        "ניקיון ותחזוקה - מי אחראי",
+        "בטיחות לילדים - גדר, מדרגות",
+        "פרטיות - האם שכנים רואים"
+      ],
+      "videoUrl": "",
+      "featured": true
+    },
+    {
+      "id": "13",
+      "title": "ג'קוזי וספא - לא הכל זהה",
+      "slug": "jacuzzi-spa-guide",
+      "category": "amenities",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "1:45",
+      "views": "9.7K",
+      "description": "ההבדלים בין סוגי ג'קוזי וספא - מה באמת כדאי",
+      "content": [
+        "ג'קוזי פנימי או חיצוני - יתרונות וחסרונות",
+        "גודל - זוגי או משפחתי",
+        "חימום - קבוע או צריך הזמנה מראש",
+        "ניקיון - כמה פעמים מחליפים מים",
+        "פרטיות - היכן הוא ממוקם"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "14",
+      "title": "נכס מתאים לדתיים/חרדים",
+      "slug": "religious-friendly-properties",
+      "category": "special-needs",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:30",
+      "views": "11.9K",
+      "description": "מה צריך לבדוק כשמחפשים נכס עם דרישות כשרות וצניעות",
+      "content": [
+        "כשרות המטבח - כלים, כיריים, מקרר",
+        "הפרדה - אפשרות להפרדת נשים וגברים",
+        "קרבה לבית כנסת - כמה רגלי הליכה",
+        "שבת - מה מותר ומה אסור להפעיל",
+        "צניעות - בריכה, ג'קוזי, שכנים"
+      ],
+      "videoUrl": "",
+      "featured": false
+    },
+    {
+      "id": "15",
+      "title": "נגיש לבעלי מוגבלויות",
+      "slug": "accessible-properties",
+      "category": "special-needs",
+      "thumbnail": "https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg",
+      "duration": "2:15",
+      "views": "7.8K",
+      "description": "איך למצוא נכס נגיש באמת - לא רק לפי התקן",
+      "content": [
+        "כניסה נגישה - רמפה, דלת רחבה",
+        "חדר שינה - מיטה נגישה, מקום לכיסא",
+        "שירותים ומקלחת - מותאמים לכיסא גלגלים",
+        "מטבח - גובה משטחים, נגישות לכלים",
+        "בריכה - כניסה נגישה, מעלון"
+      ],
+      "videoUrl": "",
       "featured": false
     }
   ]
