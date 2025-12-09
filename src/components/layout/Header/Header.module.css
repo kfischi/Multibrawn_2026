@@ -27,11 +27,10 @@
   height: 80px;
 }
 
-/* Logo - BIGGER and BOLDER */
+/* Logo Image */
 .logo {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
   text-decoration: none;
   transition: transform 0.3s ease;
 }
@@ -40,24 +39,10 @@
   transform: scale(1.05);
 }
 
-.logoText {
-  font-family: 'Heebo', sans-serif;
-  font-size: 28px; /* קודם: 24px */
-  font-weight: 900; /* קודם: 800 */
-  background: linear-gradient(135deg, #00E0FF 0%, #2D7FFF 50%, #A06BFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.5px;
-  line-height: 1;
-}
-
-.logoSubtext {
-  font-size: 11px;
-  color: #8e8e9e;
-  font-weight: 500;
-  text-align: center;
-  letter-spacing: 0.5px;
+.logoImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Desktop Navigation */
@@ -224,29 +209,20 @@
 }
 
 @media (min-width: 1024px) {
-  .logoText {
-    font-size: 36px; /* הכי גדול בדסקטופ */
-  }
-
-  .logoSubtext {
-    font-size: 13px;
+  .logoImage {
+    height: 70px;
   }
 }
 
-/* Mobile - BIGGER LOGO! */
+/* Mobile - Smaller Logo */
 @media (max-width: 767px) {
   .container {
     height: 70px;
     padding: 0 20px;
   }
 
-  .logoText {
-    font-size: 26px; /* גדול יותר! קודם: 22px */
-    font-weight: 900; /* עבה יותר! */
-  }
-
-  .logoSubtext {
-    font-size: 10px;
+  .logoImage {
+    height: 50px;
   }
 }
 
@@ -256,12 +232,7 @@
     padding: 0 16px;
   }
 
-  .logoText {
-    font-size: 24px; /* גדול יותר במובייל קטן! */
-    font-weight: 900;
-  }
-
-  .logoSubtext {
-    font-size: 9px;
+  .logoImage {
+    height: 45px;
   }
 }
