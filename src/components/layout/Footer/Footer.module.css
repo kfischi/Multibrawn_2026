@@ -199,34 +199,38 @@
 /* Credit Section */
 .credit {
   text-align: center;
-  padding-top: 15px;
-  margin-top: 15px;
+  padding-top: 20px;
+  margin-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .credit p {
   margin: 0;
-  font-size: 0.75rem;
-  color: #64748b;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #1e293b;
+  line-height: 1.8;
+  font-weight: 600;
 }
 
 .creditLink {
-  color: #FF5EA1;
+  color: #0f172a;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
 .creditLink:hover {
-  color: #A06BFF;
+  color: #FF5EA1;
   text-decoration: underline;
 }
 
 .creditSubtext {
-  font-size: 0.7rem;
-  color: #94a3b8;
-  font-weight: 600;
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 700;
+  display: block;
+  margin-top: 4px;
 }
 
 /* Responsive */
@@ -298,11 +302,15 @@
   }
 
   .credit p {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .creditLink {
+    font-size: 0.95rem;
   }
 
   .creditSubtext {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
   }
 }
 
