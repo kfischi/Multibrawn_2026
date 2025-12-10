@@ -20,8 +20,13 @@ interface UserData {
   location?: string;
   guestCount?: string;
   dates?: string;
+  specificDate?: string;
   budget?: string;
-  features?: string[];
+  shabbat?: string;
+  mangal?: string;
+  eventGuests?: string;
+  eventVenue?: string;
+  eventProduction?: string;
 }
 
 export default function ChatBot() {
@@ -30,15 +35,13 @@ export default function ChatBot() {
   const [userData, setUserData] = useState<UserData>({});
   const [currentStep, setCurrentStep] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [inputType, setInputType] = useState<'text' | 'tel'>('text');
+  const [inputType, setInputType] = useState<'text' | 'tel' | 'date'>('text');
   const [showInput, setShowInput] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Show button after 10 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -46,97 +49,76 @@ export default function ChatBot() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
+  }, [messages]);
 
-  // Focus input when shown
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      setTimeout(() => {
+        addBotMessage(
+          'שלום! 👋 אני ערדית, העוזרת הדיגיטלית של MULTIBRAWN!\nאעזור לך למצוא את המקום המושלם לחופשה. 🏖️',
+          ['בואי נתחיל! 🚀']
+        );
+      }, 500);
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     if (showInput && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showInput]);
 
-  // Start conversation when opened
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      setTimeout(() => {
-        addBotMessage(
-          'היי! 👋 אני ערדית מ-MULTIBRAWN\nאני כאן לעזור לך למצוא את הנכס המושלם!',
-          ['בואי נתחיל 🚀']
-        );
-      }, 500);
-    }
-  }, [isOpen]);
-
-  const addBotMessage = (content: string, options?: string[], isMultiSelect?: boolean) => {
+  const addBotMessage = (content: string, options?: string[]) => {
     setIsTyping(true);
     setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content,
+          timestamp: new Date(),
+          options,
+        },
+      ]);
       setIsTyping(false);
-      const newMessage: Message = {
-        id: Date.now().toString(),
-        role: 'assistant',
-        content,
-        timestamp: new Date(),
-        options,
-        isMultiSelect,
-      };
-      setMessages((prev) => [...prev, newMessage]);
-    }, 1000);
+    }, 800);
   };
 
   const addUserMessage = (content: string) => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      role: 'user',
-      content,
-      timestamp: new Date(),
-    };
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        role: 'user',
+        content,
+        timestamp: new Date(),
+      },
+    ]);
   };
 
-  const handleOptionClick = (option: string) => {
-    addUserMessage(option);
-    handleNextStep(option);
-  };
-
-  const handleMultiSelectConfirm = () => {
-    if (selectedFeatures.length > 0) {
-      addUserMessage(selectedFeatures.join(', '));
-      setUserData((prev) => ({ ...prev, features: selectedFeatures }));
-      setSelectedFeatures([]);
-      setTimeout(() => {
-        addBotMessage(
-          `מעולה! סיכמנו:\n📍 ${userData.propertyType}\n📍 ${userData.location}\n👥 ${userData.guestCount}\n✨ ${selectedFeatures.join(', ')}\n\nעכשיו, בואי נתאים את ההצעות שלנו במדויק.\nמה השם שלך?`
-        );
-        setShowInput(true);
-        setInputType('text');
-        setCurrentStep(5);
-      }, 1500);
-    }
-  };
-
-  const handleInputSubmit = () => {
+  const handleInputSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (!inputValue.trim()) return;
 
-    if (currentStep === 5) {
+    if (currentStep === 1) {
       // Name
       addUserMessage(inputValue);
       setUserData((prev) => ({ ...prev, name: inputValue }));
       setInputValue('');
       setShowInput(false);
+      setCurrentStep(2);
       setTimeout(() => {
-        addBotMessage(`נעים מאוד ${inputValue}! 😊\nומה מספר הטלפון שלך?`);
-        setShowInput(true);
+        addBotMessage('נעים מאוד! 😊\nמה מספר הטלפון/WhatsApp שלך?');
         setInputType('tel');
-        setCurrentStep(6);
+        setShowInput(true);
       }, 1000);
-    } else if (currentStep === 6) {
-      // Phone validation
-      const phoneRegex = /^05\d{8}$/;
-      if (!phoneRegex.test(inputValue)) {
-        addBotMessage('אופס! 😅 נראה שמספר הטלפון לא תקין.\nאנא הכניסי מספר בפורמט: 05XXXXXXXX');
+    } else if (currentStep === 2) {
+      // Phone
+      if (!/^05\d{8}$/.test(inputValue.replace(/[-\s]/g, ''))) {
+        addBotMessage('אופס! נראה שהמספר לא תקין. אנא הזן מספר טלפון ישראלי תקין (05XXXXXXXX)');
         setInputValue('');
         return;
       }
@@ -144,53 +126,164 @@ export default function ChatBot() {
       setUserData((prev) => ({ ...prev, phone: inputValue }));
       setInputValue('');
       setShowInput(false);
+      setCurrentStep(3);
+      setTimeout(() => {
+        addBotMessage(
+          'מעולה! 👌\nאיזה סוג נכס מעניין אותך?',
+          ['צימר רומנטי 💕', 'וילה משפחתית 🏡', 'דירת נופש 🏖️', 'מלון בוטיק 🏨', 'מתחם אירועים 🎉']
+        );
+      }, 1000);
+    } else if (currentStep === 6 && userData.dates === 'תאריך מסוים 📅') {
+      // Specific date
+      addUserMessage(inputValue);
+      setUserData((prev) => ({ ...prev, specificDate: inputValue }));
+      setInputValue('');
+      setShowInput(false);
       setCurrentStep(7);
       setTimeout(() => {
-        finishConversation();
+        addBotMessage(
+          'נהדר! 💰\nמה התקציב שלך ללילה?',
+          ['עד 500 ₪', '500-1000 ₪', '1000-2000 ₪', '2000+ ₪', 'גמיש 💪']
+        );
       }, 1000);
     }
   };
 
   const handleNextStep = (option: string) => {
+    addUserMessage(option);
+
     switch (currentStep) {
-      case 0:
+      case 0: // Start
         setCurrentStep(1);
         setTimeout(() => {
-          addBotMessage(
-            'אז בואי נתחיל! 🎯\nאיזה סוג נכס מעניין אותך?',
-            ['צימר רומנטי 💕', 'וילה משפחתית 🏡', 'מלון בוטיק 🏨', 'מתחם אירועים 🎉']
-          );
+          addBotMessage('בואי נתחיל! 🎯\nמה השם שלך?');
+          setInputType('text');
+          setShowInput(true);
         }, 1000);
         break;
-      case 1:
+
+      case 3: // Property type
         setUserData((prev) => ({ ...prev, propertyType: option }));
-        setCurrentStep(2);
-        setTimeout(() => {
-          addBotMessage(
-            'מעולה! 👌\nבאיזה אזור את מחפשת?',
-            ['צפון 🏔️', 'מרכז 🌆', 'דרום 🏜️', 'לא משנה לי 🌍']
-          );
-        }, 1000);
+        
+        if (option === 'מתחם אירועים 🎉') {
+          setCurrentStep(10); // Event flow
+          setTimeout(() => {
+            addBotMessage(
+              'אירוע! איזה כיף! 🎊\nכמה אנשים צפויים?',
+              ['עד 50 אורחים', '50-100 אורחים', '100-200 אורחים', '200+ אורחים']
+            );
+          }, 1000);
+        } else {
+          setCurrentStep(4);
+          setTimeout(() => {
+            addBotMessage(
+              'מעולה! 👌\nבאיזה אזור אתה מחפש?',
+              ['צפון 🏔️', 'מרכז 🌆', 'דרום 🏜️', 'ירושלים והסביבה 🕍', 'לא משנה לי 🌍']
+            );
+          }, 1000);
+        }
         break;
-      case 2:
+
+      case 4: // Location
         setUserData((prev) => ({ ...prev, location: option }));
-        setCurrentStep(3);
+        setCurrentStep(5);
         setTimeout(() => {
           addBotMessage(
-            'נהדר! 🎊\nלכמה אורחים את צריכה?',
-            ['זוג (2) 👫', 'משפחה קטנה (4-6) 👨‍👩‍👧‍👦', 'משפחה גדולה (8-12) 👪', 'קבוצה (12+) 👥']
+            'נהדר! 🎊\nלכמה אורחים אתה צריך?',
+            ['2 אורחים 👫', '2-4 אורחים 👨‍👩‍👧', '4-8 אורחים 👨‍👩‍👧‍👦', '8+ אורחים 👨‍👩‍👧‍👦👨‍👩‍👧‍👦']
           );
         }, 1000);
         break;
-      case 3:
+
+      case 5: // Guest count
         setUserData((prev) => ({ ...prev, guestCount: option }));
-        setCurrentStep(4);
+        setCurrentStep(6);
         setTimeout(() => {
           addBotMessage(
-            'מושלם! ✨\nאילו תכונות חשובות לך?\n(אפשר לבחור כמה שרוצים)',
-            ['בריכה פרטית 🏊', 'ג\'קוזי ספא 🛁', 'מטבח מאובזר 🍳', 'נוף מדהים 🌄', 'קרוב לאטרקציות 🎢', 'חניה פרטית 🚗'],
-            true
+            'מצוין! 📅\nמתי אתה מתכנן להגיע?',
+            ['סופ״ש הקרוב 🎯', 'תוך חודש 📆', 'תאריך מסוים 📅', 'עדיין לא החלטתי 🤔']
           );
+        }, 1000);
+        break;
+
+      case 6: // Dates
+        setUserData((prev) => ({ ...prev, dates: option }));
+        
+        if (option === 'תאריך מסוים 📅') {
+          setTimeout(() => {
+            addBotMessage('איזה תאריך? (לדוגמה: 15/01/2025)');
+            setInputType('text');
+            setShowInput(true);
+          }, 1000);
+        } else {
+          setCurrentStep(7);
+          setTimeout(() => {
+            addBotMessage(
+              'נהדר! 💰\nמה התקציב שלך ללילה?',
+              ['עד 500 ₪', '500-1000 ₪', '1000-2000 ₪', '2000+ ₪', 'גמיש 💪']
+            );
+          }, 1000);
+        }
+        break;
+
+      case 7: // Budget
+        setUserData((prev) => ({ ...prev, budget: option }));
+        setCurrentStep(8);
+        setTimeout(() => {
+          addBotMessage(
+            'שומרים שבת? ⛪',
+            ['כן, שומרים שבת 🕯️', 'לא שומרים ✨']
+          );
+        }, 1000);
+        break;
+
+      case 8: // Shabbat
+        setUserData((prev) => ({ ...prev, shabbat: option }));
+        setCurrentStep(9);
+        setTimeout(() => {
+          addBotMessage(
+            'צריכים מנגל/גריל? 🔥',
+            ['כן, חייבים מנגל! 🍖', 'לא צריך 😊']
+          );
+        }, 1000);
+        break;
+
+      case 9: // Mangal
+        setUserData((prev) => ({ ...prev, mangal: option }));
+        setCurrentStep(99);
+        setTimeout(() => {
+          finishConversation();
+        }, 1000);
+        break;
+
+      // Event flow
+      case 10: // Event guests
+        setUserData((prev) => ({ ...prev, eventGuests: option }));
+        setCurrentStep(11);
+        setTimeout(() => {
+          addBotMessage(
+            'יש לכם מקום לאירוע או צריכים מתחם? 🎪',
+            ['יש לנו מקום ✅', 'צריכים מתחם 🏛️']
+          );
+        }, 1000);
+        break;
+
+      case 11: // Event venue
+        setUserData((prev) => ({ ...prev, eventVenue: option }));
+        setCurrentStep(12);
+        setTimeout(() => {
+          addBotMessage(
+            'צריכים שירות הפקת אירועים מלא? 🎬',
+            ['כן, הפקה מלאה! 🎉', 'לא, רק המקום 📍']
+          );
+        }, 1000);
+        break;
+
+      case 12: // Event production
+        setUserData((prev) => ({ ...prev, eventProduction: option }));
+        setCurrentStep(99);
+        setTimeout(() => {
+          finishConversation();
         }, 1000);
         break;
     }
@@ -198,22 +291,35 @@ export default function ChatBot() {
 
   const finishConversation = () => {
     addBotMessage(
-      `תודה רבה ${userData.name}! 🙏\n\nקיבלתי את כל הפרטים:\n✅ ${userData.propertyType}\n✅ ${userData.location}\n✅ ${userData.guestCount}\n✅ ${userData.features?.join(', ')}\n\nאני שולחת לך עכשיו הודעת WhatsApp עם כל הפרטים,\nואנחנו ניצור איתך קשר תוך זמן קצר עם הצעות מדויקות!\n\nמקווה שמצאת את השיחה שלנו מועילה! 💖`
+      'מושלם! 🎉\n\nקיבלתי את כל הפרטים.\nעכשיו אשלח את הכל ל-WhatsApp ונחזור אליך במהרה עם הצעות מדויקות! 📱',
+      ['שלח ל-WhatsApp ✅']
     );
-    setTimeout(() => {
-      sendToWhatsApp();
-    }, 2000);
   };
 
   const sendToWhatsApp = () => {
     // Get only user responses (answers), not bot questions
-    const userResponses = messages
-      .filter((m) => m.role === 'user')
-      .map((m) => m.content)
-      .join('\n');
+    const responses = [];
+    
+    if (userData.name) responses.push(`👤 שם: ${userData.name}`);
+    if (userData.phone) responses.push(`📱 טלפון: ${userData.phone}`);
+    if (userData.propertyType) responses.push(`🏠 סוג נכס: ${userData.propertyType}`);
+    
+    if (userData.propertyType === 'מתחם אירועים 🎉') {
+      if (userData.eventGuests) responses.push(`👥 מספר אורחים: ${userData.eventGuests}`);
+      if (userData.eventVenue) responses.push(`📍 מקום: ${userData.eventVenue}`);
+      if (userData.eventProduction) responses.push(`🎬 הפקה: ${userData.eventProduction}`);
+    } else {
+      if (userData.location) responses.push(`📍 אזור: ${userData.location}`);
+      if (userData.guestCount) responses.push(`👥 אורחים: ${userData.guestCount}`);
+      if (userData.dates) responses.push(`📅 תאריכים: ${userData.dates}`);
+      if (userData.specificDate) responses.push(`📆 תאריך מדויק: ${userData.specificDate}`);
+      if (userData.budget) responses.push(`💰 תקציב: ${userData.budget}`);
+      if (userData.shabbat) responses.push(`⛪ שבת: ${userData.shabbat}`);
+      if (userData.mangal) responses.push(`🔥 מנגל: ${userData.mangal}`);
+    }
 
     const message = encodeURIComponent(
-      `היי MULTIBRAWN! 👋\n\nזה סיכום התשובות שלי מהצ'אט:\n\n${userResponses}\n\nאשמח לקבל הצעות מתאימות!`
+      `היי MULTIBRAWN! 👋\n\nזה סיכום התשובות שלי מהצ'אט:\n\n${responses.join('\n')}\n\nאשמח לקבל הצעות מתאימות!`
     );
 
     window.open(`https://wa.me/972523983394?text=${message}`, '_blank');
@@ -225,7 +331,7 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Chat Button - FIXED POSITION! */}
+      {/* Chat Button */}
       <div className={styles.chatButtonWrapper}>
         <button
           onClick={toggleChat}
@@ -248,41 +354,34 @@ export default function ChatBot() {
         {!isOpen && <div className={styles.chatLabel}>צ'אט עם ערדית</div>}
       </div>
 
-      {/* Chat Window - FIXED POSITION! */}
+      {/* Chat Window */}
       {isOpen && (
         <div className={styles.chatWindow}>
-          {/* Header */}
           <div className={styles.chatHeader}>
             <div className={styles.headerInfo}>
-              <div className={styles.avatar}>
-                <img 
-                  src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1764669572/%D7%AA%D7%9E%D7%95%D7%A0%D7%94_%D7%9C%D7%91%D7%95%D7%98_dl5w3z.png"
-                  alt="ערדית"
-                  className={styles.avatarImage}
-                />
-              </div>
-              <div>
-                <h3>ערדית</h3>
-                <p>העוזרת הדיגיטלית של MULTIBRAWN</p>
-              </div>
+              <h3>ערדית - העוזרת שלכם</h3>
+              <p>🟢 אונליין עכשיו</p>
             </div>
-            <button onClick={toggleChat} className={styles.closeButton} aria-label="סגור">
-              ✕
-            </button>
           </div>
 
-          {/* Messages */}
           <div className={styles.messages}>
-            {messages.map((msg) => (
-              <div key={msg.id} className={styles.messageWrapper}>
-                <div className={`${styles.message} ${styles[msg.role]}`}>
-                  <div className={styles.messageContent}>{msg.content}</div>
-                  {msg.options && !msg.isMultiSelect && (
+            {messages.map((message) => (
+              <div key={message.id} className={styles.messageWrapper}>
+                <div className={`${styles.message} ${styles[message.role]}`}>
+                  <div className={styles.messageContent}>{message.content}</div>
+                  
+                  {message.options && (
                     <div className={styles.options}>
-                      {msg.options.map((option, index) => (
+                      {message.options.map((option, index) => (
                         <button
                           key={index}
-                          onClick={() => handleOptionClick(option)}
+                          onClick={() => {
+                            if (currentStep === 99) {
+                              sendToWhatsApp();
+                            } else {
+                              handleNextStep(option);
+                            }
+                          }}
                           className={styles.optionButton}
                         >
                           {option}
@@ -290,85 +389,48 @@ export default function ChatBot() {
                       ))}
                     </div>
                   )}
-                  {msg.isMultiSelect && msg.options && (
-                    <div className={styles.multiSelect}>
-                      <div className={styles.multiOptions}>
-                        {msg.options.map((option, index) => (
-                          <button
-                            key={index}
-                            onClick={() => {
-                              setSelectedFeatures((prev) =>
-                                prev.includes(option)
-                                  ? prev.filter((f) => f !== option)
-                                  : [...prev, option]
-                              );
-                            }}
-                            className={`${styles.multiOption} ${
-                              selectedFeatures.includes(option) ? styles.selected : ''
-                            }`}
-                          >
-                            {selectedFeatures.includes(option) && '✓ '}
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                      {selectedFeatures.length > 0 && (
-                        <button onClick={handleMultiSelectConfirm} className={styles.confirmButton}>
-                          ✓ אישור ({selectedFeatures.length} נבחרו)
-                        </button>
-                      )}
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
-
+            
             {isTyping && (
-              <div className={styles.typingIndicator}>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div className={styles.messageWrapper}>
+                <div className={`${styles.message} ${styles.assistant}`}>
+                  <div className={styles.typingIndicator}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
               </div>
             )}
-
+            
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
           {showInput && (
-            <div className={styles.inputArea}>
+            <form onSubmit={handleInputSubmit} className={styles.inputArea}>
               <input
                 ref={inputRef}
                 type={inputType}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleInputSubmit()}
-                placeholder={inputType === 'tel' ? '05XXXXXXXX' : 'הקלידי כאן...'}
+                placeholder={
+                  inputType === 'tel' 
+                    ? '05XXXXXXXX' 
+                    : inputType === 'date'
+                    ? 'DD/MM/YYYY'
+                    : 'הקלד כאן...'
+                }
                 className={styles.input}
               />
-              <button onClick={handleInputSubmit} className={styles.sendButton} aria-label="שלח">
+              <button type="submit" className={styles.sendButton}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                 </svg>
               </button>
-            </div>
+            </form>
           )}
-
-          {/* Progress Bar */}
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill}
-              style={{ width: `${(currentStep / 7) * 100}%` }}
-            ></div>
-          </div>
-
-          {/* Footer */}
-          <div className={styles.footer}>
-            <p className={styles.footerText}>
-              מופעל על ידי MULTIBRAWN AI ✨
-            </p>
-          </div>
         </div>
       )}
     </>
