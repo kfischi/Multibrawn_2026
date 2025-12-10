@@ -1,10 +1,10 @@
-/* Footer Styles - WITH YOUTUBE */
+/* Footer Styles - COMPACT & DARK */
 
 .footer {
   background: linear-gradient(135deg, rgba(0, 224, 255, 0.05) 0%, rgba(160, 107, 255, 0.05) 100%);
   border-top: 1px solid rgba(0, 224, 255, 0.1);
-  padding: 60px 0 20px;
-  margin-top: 80px;
+  padding: 40px 0 15px;
+  margin-top: 60px;
 }
 
 .container {
@@ -17,9 +17,9 @@
 .top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
+  gap: 40px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -27,7 +27,7 @@
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .logo {
@@ -37,91 +37,92 @@
 }
 
 .logoImage {
-  height: 80px;
+  height: 60px;
   width: auto;
   object-fit: contain;
 }
 
-.brandName {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1a0b2e;
-  margin: 0;
-  letter-spacing: 0.5px;
+.tagline {
+  font-size: 0.85rem;
+  color: #1e293b;
+  line-height: 1.6;
+  font-weight: 500;
+  max-width: 350px;
 }
 
-.description {
-  font-size: 15px;
-  color: #4a4a68;
-  line-height: 1.7;
-  margin: 0;
-  max-width: 400px;
-}
-
-/* Social Media - WITH YOUTUBE! */
+/* Social Media */
 .social {
   display: flex;
   gap: 12px;
+  margin-top: 12px;
 }
 
 .socialLink {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border-radius: 50%;
-  color: #4a4a68;
+  color: #1a0b2e;
+  text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .socialLink:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Individual social colors on hover */
-.socialLink:nth-child(1):hover {
-  /* YouTube */
-  background: #FF0000;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 224, 255, 0.3);
+  background: linear-gradient(135deg, #00E0FF 0%, #A06BFF 100%);
   color: white;
 }
 
-.socialLink:nth-child(2):hover {
-  /* Facebook */
-  background: #1877F2;
-  color: white;
-}
-
-.socialLink:nth-child(3):hover {
-  /* Instagram */
-  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
-  color: white;
-}
-
-.socialLink:nth-child(4):hover {
-  /* WhatsApp */
-  background: #25D366;
-  color: white;
+.socialLink svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Columns */
 .column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .columnTitle {
-  font-size: 18px;
+  font-family: var(--font-assistant);
+  font-size: 1rem;
   font-weight: 700;
-  color: #1a0b2e;
-  margin: 0 0 8px 0;
+  color: #0f172a;
+  margin-bottom: 8px;
 }
 
-.links,
+/* Links */
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.links li a {
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.links li a:hover {
+  color: #FF5EA1;
+  transform: translateX(-3px);
+}
+
+/* Contact List */
 .contactList {
   list-style: none;
   padding: 0;
@@ -131,40 +132,28 @@
   gap: 10px;
 }
 
-.links li a {
-  font-size: 15px;
-  color: #4a4a68;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.links li a:hover {
-  color: #2D7FFF;
-  transform: translateX(-4px);
-}
-
 .contactList li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  color: #4a4a68;
+  gap: 10px;
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .contactList li svg {
-  color: #00E0FF;
   flex-shrink: 0;
+  opacity: 0.7;
 }
 
 .contactList li a {
-  color: #4a4a68;
+  color: #1e293b;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .contactList li a:hover {
-  color: #2D7FFF;
+  color: #FF5EA1;
 }
 
 /* Bottom Bar */
@@ -172,13 +161,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
   padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  gap: 20px;
 }
 
 .copyright {
-  font-size: 14px;
   color: #1e293b;
+  font-size: 0.8rem;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -186,116 +177,93 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
 }
 
 .legal a {
   color: #1e293b;
   text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .legal a:hover {
-  color: #2D7FFF;
+  color: #FF5EA1;
 }
 
 .separator {
-  color: #E0E0E0;
+  color: #64748b;
+  font-size: 0.8rem;
 }
 
-/* Tablet */
+/* Credit Section */
+.credit {
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.credit p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.creditLink {
+  color: #FF5EA1;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.creditLink:hover {
+  color: #A06BFF;
+  text-decoration: underline;
+}
+
+.creditSubtext {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .top {
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .brand {
-    grid-column: 1 / -1;
+    gap: 30px;
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .footer {
-    padding: 40px 0 20px;
-    margin-top: 60px;
-  }
-
-  .container {
-    padding: 0 20px;
+    padding: 30px 0 12px;
+    margin-top: 40px;
   }
 
   .top {
     grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 32px;
-    padding-bottom: 32px;
+    gap: 25px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   .brand {
-    grid-column: 1;
-  }
-
-  .logoText {
-    font-size: 28px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .social {
-    gap: 10px;
-  }
-
-  .socialLink {
-    width: 40px;
-    height: 40px;
-  }
-
-  .socialLink svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .columnTitle {
-    font-size: 16px;
-  }
-
-  .links li a,
-  .contactList li {
-    font-size: 14px;
-  }
-
-  .bottom {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 12px;
-    padding-top: 16px;
   }
 
-  .copyright {
-    font-size: 13px;
+  .logoImage {
+    height: 50px;
   }
 
-  .legal {
-    font-size: 13px;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logoText {
-    font-size: 24px;
-  }
-
-  .description {
-    font-size: 13px;
+  .tagline {
+    font-size: 0.8rem;
   }
 
   .social {
-    gap: 8px;
+    gap: 10px;
   }
 
   .socialLink {
@@ -309,11 +277,55 @@
   }
 
   .columnTitle {
-    font-size: 15px;
+    font-size: 0.95rem;
   }
 
   .links li a,
-  .contactList li {
-    font-size: 13px;
+  .contactList li,
+  .contactList li a {
+    font-size: 0.8rem;
+  }
+
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  .copyright,
+  .legal a {
+    font-size: 0.75rem;
+  }
+
+  .credit p {
+    font-size: 0.7rem;
+  }
+
+  .creditSubtext {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 0 10px;
+  }
+
+  .logoImage {
+    height: 45px;
+  }
+
+  .social {
+    gap: 8px;
+  }
+
+  .socialLink {
+    width: 34px;
+    height: 34px;
+  }
+
+  .credit {
+    padding-top: 12px;
+    margin-top: 12px;
   }
 }
