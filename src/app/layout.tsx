@@ -5,8 +5,8 @@ import WhatsAppButton from '@/components/ui/WhatsAppButton/WhatsAppButton';
 import AccessibilityMenu from '@/components/ui/AccessibilityMenu/AccessibilityMenu';
 
 export const metadata: Metadata = {
-  title: 'MULTIBRAWN | מולטיבראון - צימרים, וילות ומתחמי אירועים',
-  description: 'מולטיבראון - השותף שלכם למציאת המקום המושלם לחופשה! צימרים רומנטיים, וילות משפחתיות, מלונות בוטיק ומתחמי אירועים ברחבי הארץ. שירות אישי מהיר ומקצועי.',
+  title: 'MULTIBRAWN | מולטיבראון - צימרים, וילות ודירות נופש',
+  description: 'מולטיבראון - השותף שלכם למציאת המקום המושלם לחופשה! צימרים רומנטיים, וילות משפחתיות, דירות נופש, מלונות בוטיק ומתחמי אירועים ברחבי הארץ. שירות אישי מהיר ומקצועי.',
   keywords: [
     'צימרים',
     'וילות',
@@ -39,15 +39,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'he_IL',
     url: 'https://multibrawn.co.il',
-    title: 'MULTIBRAWN | מולטיבראון - צימרים ווילות',
-    description: 'השותף שלכם למציאת המקום המושלם לחופשה! צימרים, וילות ומתחמי אירועים',
+    title: 'MULTIBRAWN | מולטיבראון - צימרים, וילות ודירות נופש',
+    description: 'השותף שלכם למציאת המקום המושלם לחופשה! צימרים, וילות, דירות נופש ומתחמי אירועים',
     siteName: 'MULTIBRAWN',
     images: [
       {
         url: 'https://res.cloudinary.com/dptyfvwyo/video/upload/so_0/%D7%95%D7%99%D7%93%D7%90%D7%95_%D7%9C%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A4_rxu1cb.jpg',
         width: 1200,
         height: 630,
-        alt: 'MULTIBRAWN - וידאו ווטסאפ',
+        alt: 'MULTIBRAWN - צימרים וילות ודירות נופש',
       },
     ],
     videos: [
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MULTIBRAWN | מולטיבראון - צימרים ווילות',
+    title: 'MULTIBRAWN | מולטיבראון - צימרים, וילות ודירות נופש',
     description: 'השותף שלכם למציאת המקום המושלם לחופשה!',
     images: ['https://res.cloudinary.com/dptyfvwyo/video/upload/so_0/%D7%95%D7%99%D7%93%D7%90%D7%95_%D7%9C%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A4_rxu1cb.jpg'],
   },
