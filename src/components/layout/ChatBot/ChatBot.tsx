@@ -281,6 +281,17 @@ export default function ChatBot() {
 
       case 12: // Event production
         setUserData((prev) => ({ ...prev, eventProduction: option }));
+        setCurrentStep(13);
+        setTimeout(() => {
+          addBotMessage(
+            'מעולה! 💰\nמה התקציב שלכם לאירוע?',
+            ['עד 50,000 ₪', '50,000-100,000 ₪', '100,000-200,000 ₪', '200,000+ ₪', 'גמיש 💪']
+          );
+        }, 1000);
+        break;
+
+      case 13: // Event budget
+        setUserData((prev) => ({ ...prev, budget: option }));
         setCurrentStep(99);
         setTimeout(() => {
           finishConversation();
@@ -308,6 +319,7 @@ export default function ChatBot() {
       if (userData.eventGuests) responses.push(`👥 מספר אורחים: ${userData.eventGuests}`);
       if (userData.eventVenue) responses.push(`📍 מקום: ${userData.eventVenue}`);
       if (userData.eventProduction) responses.push(`🎬 הפקה: ${userData.eventProduction}`);
+      if (userData.budget) responses.push(`💰 תקציב: ${userData.budget}`);
     } else {
       if (userData.location) responses.push(`📍 אזור: ${userData.location}`);
       if (userData.guestCount) responses.push(`👥 אורחים: ${userData.guestCount}`);
