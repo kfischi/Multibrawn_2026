@@ -128,6 +128,24 @@ export default function Footer() {
             <Link href="/accessibility-statement">הצהרת נגישות</Link>
           </div>
         </div>
+
+        {/* Credit */}
+        <div className={styles.credit}>
+          <p>
+            האתר נבנה ע״י{' '}
+            <a 
+              href="https://multi-site.co.il" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.creditLink}
+            >
+              Multi-Site
+            </a>
+            {' '}- אתרים שבונים עסקים
+            <br />
+            <span className={styles.creditSubtext}>מבית Multibrawn</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
