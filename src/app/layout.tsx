@@ -44,10 +44,18 @@ export const metadata: Metadata = {
     siteName: 'MULTIBRAWN',
     images: [
       {
-        url: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1762012646/Ardit_znq9aj.jpg',
+        url: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1765322482/%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A42_xl8qaq.jpg',
         width: 1200,
         height: 630,
-        alt: 'MULTIBRAWN - צימרים ווילות',
+        alt: 'MULTIBRAWN - מולטיבראון',
+      },
+    ],
+    videos: [
+      {
+        url: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1765392616/%D7%95%D7%99%D7%93%D7%90%D7%95_%D7%9C%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A4_rxu1cb.mp4',
+        type: 'video/mp4',
+        width: 1280,
+        height: 720,
       },
     ],
   },
@@ -55,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MULTIBRAWN | מולטיבראון - צימרים ווילות',
     description: 'השותף שלכם למציאת המקום המושלם לחופשה!',
-    images: ['https://res.cloudinary.com/dptyfvwyo/image/upload/v1762012646/Ardit_znq9aj.jpg'],
+    images: ['https://res.cloudinary.com/dptyfvwyo/image/upload/v1765322482/%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A42_xl8qaq.jpg'],
   },
   icons: {
     icon: '/favicon.ico',
