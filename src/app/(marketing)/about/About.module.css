@@ -674,3 +674,14 @@
     font-size: 1.1rem;
   }
 }
+
+/* Client Icon SVG styling */
+.clientIcon svg {
+  stroke: var(--color-pink);
+  transition: all 0.3s ease;
+}
+
+.clientCard:hover .clientIcon svg {
+  stroke: var(--color-purple);
+  transform: scale(1.1);
+}
