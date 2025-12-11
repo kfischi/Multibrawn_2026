@@ -1,5 +1,4 @@
 # Netlify Configuration for MULTIBRAWN Next.js Site
-
 [build]
   # Build command
   command = "npm run build"
@@ -31,7 +30,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Secrets scanning configuration - Allow public Supabase anon key
+[secrets]
+  omit_keys = ["NEXT_PUBLIC_SUPABASE_ANON_KEY"]
+
 # Environment variables (configure these in Netlify UI)
 # GEMINI_API_KEY
 # NEXT_PUBLIC_WHATSAPP_NUMBER
 # NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+# NEXT_PUBLIC_SUPABASE_URL
+# NEXT_PUBLIC_SUPABASE_ANON_KEY
+# SUPABASE_SERVICE_ROLE_KEY
