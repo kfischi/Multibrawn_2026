@@ -6,6 +6,9 @@ import { supabase } from '@/lib/supabase/client';
 import propertiesData from '@/data/properties.json';
 import styles from './dashboard.module.css';
 
+// CRITICAL: Force dynamic rendering - don't prerender at build time
+export const dynamic = 'force-dynamic';
+
 // Get the array from the JSON
 const allProperties = propertiesData.properties;
 
