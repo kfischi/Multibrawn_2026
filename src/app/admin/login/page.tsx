@@ -3,7 +3,7 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from '@/lib/supabase/auth';
+import { supabase } from '@/lib/supabase/client';
 import styles from './login.module.css';
 
 // CRITICAL: Force dynamic rendering - don't prerender at build time
@@ -22,7 +22,11 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const { error: signInError } = await signIn(email, password);
+      // Direct Supabase call instead of helper
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       
       if (signInError) {
         setError('אימייל או סיסמה שגויים');
