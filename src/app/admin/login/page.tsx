@@ -1,10 +1,13 @@
+// src/app/admin/login/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from '@/lib/supabase/auth';
-import Image from 'next/image';
 import styles from './login.module.css';
+
+// CRITICAL: Force dynamic rendering - don't prerender at build time
+export const dynamic = 'force-dynamic';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -13,48 +16,50 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      await signIn(email, password);
+      const { error: signInError } = await signIn(email, password);
+      
+      if (signInError) {
+        setError('אימייל או סיסמה שגויים');
+        setLoading(false);
+        return;
+      }
+
+      // Success - redirect to dashboard
       router.push('/admin');
-      router.refresh();
-    } catch (err: any) {
-      setError('אימייל או סיסמה שגויים');
-      console.error(err);
-    } finally {
+    } catch (err) {
+      setError('שגיאה בהתחברות. נסה שוב.');
       setLoading(false);
     }
   };
 
   return (
-    <div className={styles.container}>
-      {/* Background Gradient */}
-      <div className={styles.background}>
-        <div className={styles.gradientOrb1}></div>
-        <div className={styles.gradientOrb2}></div>
-        <div className={styles.gradientOrb3}></div>
-      </div>
-
-      {/* Login Card */}
-      <div className={styles.card}>
-        {/* Logo */}
+    <div className={styles.loginContainer}>
+      <div className={styles.loginCard}>
         <div className={styles.logoContainer}>
           <img 
-            src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1733340414/Multibrawn_logo_no_backround_npoc6t.png"
+            src="https://res.cloudinary.com/dptyfvwyo/image/upload/v1733583123/multibrawn-logo_wvmkbd.png"
             alt="MULTIBRAWN"
             className={styles.logo}
           />
-          <h1 className={styles.title}>Admin Panel</h1>
-          <p className={styles.subtitle}>ממשק ניהול מתקדם</p>
         </div>
 
-        {/* Login Form */}
+        <h1 className={styles.title}>כניסה למערכת ניהול</h1>
+        <p className={styles.subtitle}>MULTIBRAWN Admin Panel</p>
+
+        {error && (
+          <div className={styles.error}>
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.inputGroup}>
+          <div className={styles.formGroup}>
             <label htmlFor="email" className={styles.label}>
               אימייל
             </label>
@@ -63,14 +68,14 @@ export default function AdminLogin() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="info@multibrawn.co.il"
               className={styles.input}
+              placeholder="your@email.com"
               required
               disabled={loading}
             />
           </div>
 
-          <div className={styles.inputGroup}>
+          <div className={styles.formGroup}>
             <label htmlFor="password" className={styles.label}>
               סיסמה
             </label>
@@ -79,23 +84,12 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
               className={styles.input}
+              placeholder="••••••••"
               required
               disabled={loading}
             />
           </div>
-
-          {error && (
-            <div className={styles.error}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              {error}
-            </div>
-          )}
 
           <button
             type="submit"
@@ -105,21 +99,15 @@ export default function AdminLogin() {
             {loading ? (
               <div className={styles.spinner}></div>
             ) : (
-              <>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                  <polyline points="10 17 15 12 10 7"/>
-                  <line x1="15" y1="12" x2="3" y2="12"/>
-                </svg>
-                כניסה למערכת
-              </>
+              'כניסה למערכת'
             )}
           </button>
         </form>
 
-        {/* Footer */}
         <div className={styles.footer}>
-          <p>© 2024 MULTIBRAWN. All rights reserved.</p>
+          <a href="/" className={styles.backLink}>
+            ← חזרה לאתר
+          </a>
         </div>
       </div>
     </div>
