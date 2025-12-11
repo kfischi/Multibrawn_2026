@@ -3,8 +3,11 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import properties from '@/data/properties.json';
+import propertiesData from '@/data/properties.json';
 import styles from './dashboard.module.css';
+
+// Get the array from the JSON
+const allProperties = propertiesData.properties;
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -31,8 +34,8 @@ export default function AdminDashboard() {
 
       if (error) throw error;
 
-      // Calculate stats
-      const featured = properties.filter((p: any) => p.featured).length;
+      // Calculate stats - NOW USING allProperties!
+      const featured = allProperties.filter((p: any) => p.featured).length;
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       
@@ -41,7 +44,7 @@ export default function AdminDashboard() {
       ).length || 0;
 
       setStats({
-        totalProperties: properties.length,
+        totalProperties: allProperties.length,
         featuredProperties: featured,
         totalLeads: leads?.length || 0,
         recentLeads: todayLeads,
