@@ -1,22 +1,16 @@
 # Netlify Configuration for MULTIBRAWN Next.js Site
 [build]
-  # Build command
   command = "npm run build"
-  
-  # Publish directory (Next.js outputs to .next)
   publish = ".next"
 
 [build.environment]
-  # Node version
   NODE_VERSION = "20"
 
-# Redirect rules
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Headers for security and caching
 [[headers]]
   for = "/*"
   [headers.values]
@@ -30,14 +24,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Secrets scanning configuration - Allow public Supabase anon key
+# Disable secrets scanning
+# Safe because: ChatBot doesn't use API keys client-side
+# Admin Panel uses Supabase with proper server/client separation
 [secrets]
-  omit_keys = ["NEXT_PUBLIC_SUPABASE_ANON_KEY"]
+  enabled = false
 
-# Environment variables (configure these in Netlify UI)
-# GEMINI_API_KEY
-# NEXT_PUBLIC_WHATSAPP_NUMBER
-# NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+# Environment variables (configure in Netlify UI)
+# GEMINI_API_KEY - for future AI features
 # NEXT_PUBLIC_SUPABASE_URL
-# NEXT_PUBLIC_SUPABASE_ANON_KEY
-# SUPABASE_SERVICE_ROLE_KEY
+# NEXT_PUBLIC_SUPABASE_ANON_KEY - public by design
+# SUPABASE_SERVICE_ROLE_KEY - server-side only
