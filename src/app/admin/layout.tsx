@@ -8,8 +8,6 @@ import styles from './admin.module.css';
 
 // FORCE DYNAMIC FOR ENTIRE ADMIN SECTION
 export const dynamic = 'force-dynamic';
-export const dynamicParams = true;
-export const revalidate = 0;
 
 export default function AdminLayout({
   children,
