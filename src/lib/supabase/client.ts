@@ -1,56 +1,8 @@
-// lib/supabase/client.ts
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+// src/lib/supabase/client.ts
 import { createClient } from '@supabase/supabase-js';
 
-// Client-side Supabase client
-export const supabase = createClientComponentClient();
+// HARDCODED KEYS - This ensures they're always available
+const supabaseUrl = 'https://cfulruffxneijmcvpclz.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmdWxydWZmeG5laWptY3ZwY2x6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwMTE4MDAsImV4cCI6MjA0OTU4NzgwMH0.NeyDg6C8yeFfdHMFXrVVdkurO-9K-hon0E98yAWG-V0';
 
-// Server-side Supabase client (with service role)
-export const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-);
-
-// Types
-export type Property = {
-  id: string;
-  name: string;
-  type: string;
-  location: string;
-  area: string;
-  capacity: number;
-  image: string;
-  amenities: string[];
-  description: string;
-  price_range: string;
-  featured: boolean;
-  created_at: string;
-  updated_at: string;
-};
-
-export type ActivityLog = {
-  id: string;
-  user_id: string;
-  action: string;
-  details: Record<string, any>;
-  created_at: string;
-};
-
-export type ChatBotLead = {
-  id: string;
-  name: string;
-  phone: string;
-  property_type: string;
-  location: string;
-  guest_count: string;
-  dates: string;
-  budget: string;
-  additional_info: Record<string, any>;
-  created_at: string;
-};
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
