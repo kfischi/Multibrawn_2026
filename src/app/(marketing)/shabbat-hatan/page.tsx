@@ -332,8 +332,8 @@ export default function ShabbatHatanPage() {
               להתרכז בשמחה ובמשפחה, דאגנו למעטפת הלכתית הדוקה שלא משאירה מקום לספקות:
             </p>
 
-            <div className={styles.kashrut Grid}>
-              <div className={styles.kashrut Card}>
+            <div className={styles.kashrutGrid}>
+              <div className={styles.kashrutCard}>
                 <div className={styles.cardIcon}>📜</div>
                 <h3>תעודת כשרות שקופה</h3>
                 <p>
@@ -342,7 +342,7 @@ export default function ShabbatHatanPage() {
                 </p>
               </div>
 
-              <div className={styles.kashrut Card}>
+              <div className={styles.kashrutCard}>
                 <div className={styles.cardIcon}>👨‍🍳</div>
                 <h3>פתרונות משגיח צמוד</h3>
                 <p>
@@ -351,7 +351,7 @@ export default function ShabbatHatanPage() {
                 </p>
               </div>
 
-              <div className={styles.kashrut Card}>
+              <div className={styles.kashrutCard}>
                 <div className={styles.cardIcon}>✅</div>
                 <h3>בקרת איכות על האוכל</h3>
                 <p>
@@ -361,7 +361,7 @@ export default function ShabbatHatanPage() {
               </div>
             </div>
 
-            <div className={styles.kashrut Footer}>
+            <div className={styles.kashrutFooter}>
               <p>
                 💡 <strong>טיפ חשוב:</strong> אל תהססו לשאול אותנו כל שאלה על כשרות, רמת השגחה, או דרישות מיוחדות. 
                 אנחנו כאן כדי לוודא שהכל יהיה מדויק בדיוק כפי שאתם צריכים.
