@@ -106,7 +106,7 @@
 .chatWindow {
   position: fixed; /* CRITICAL: FIXED not absolute! */
   bottom: 100px;
-  right: 24px; /* שונה מ-left ל-right! */
+  right: 24px;
   width: 400px;
   max-height: 600px;
   background: white;
@@ -114,7 +114,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  z-index: 9999; /* Below modal but above button */
+  z-index: 9999;
   animation: slideUp 0.3s ease;
   overflow: hidden;
 }
@@ -479,7 +479,6 @@
     left: 20px;
     width: 56px;
     height: 56px;
-    /* STILL FIXED! */
   }
 
   .chatButton svg {
@@ -500,7 +499,6 @@
     right: 20px;
     width: auto;
     max-height: 500px;
-    /* STILL FIXED! */
   }
 
   .chatHeader {
@@ -552,12 +550,6 @@
     right: 16px;
     max-height: 450px;
   }
-}
-
-/* Prevent body scroll when chat is open */
-body:has(.chatWindow) {
-  /* Optional: uncomment if you want to prevent body scroll */
-  /* overflow: hidden; */
 }
 
 /* Mobile adjustments */
