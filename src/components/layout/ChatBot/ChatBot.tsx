@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './ChatBot.module.css';
 
 interface Message {
@@ -27,6 +28,11 @@ interface UserData {
   eventGuests?: string;
   eventVenue?: string;
   eventProduction?: string;
+  // Shabbat Hatan specific
+  shabbatHatanGuests?: string;
+  shabbatHatanDate?: string;
+  kashrut?: string;
+  supervisor?: string;
 }
 
 export default function ChatBot() {
@@ -129,8 +135,15 @@ export default function ChatBot() {
       setCurrentStep(3);
       setTimeout(() => {
         addBotMessage(
-          'מעולה! 👌\nאיזה סוג נכס מעניין אותך?',
-          ['צימר רומנטי 💕', 'וילה משפחתית 🏡', 'דירת נופש 🏖️', 'מלון בוטיק 🏨', 'מתחם אירועים 🎉']
+          'מעולה! 👌\nאיזה סוג שירות מעניין אותך?',
+          [
+            'צימר רומנטי 💕', 
+            'וילה משפחתית 🏡', 
+            'דירת נופש 🏖️', 
+            'מלון בוטיק 🏨',
+            'שבת חתן 🕍',  // ← 🆕 חדש!
+            'מתחם אירועים 🎉'
+          ]
         );
       }, 1000);
     } else if (currentStep === 6 && userData.dates === 'תאריך מסוים 📅') {
@@ -144,6 +157,19 @@ export default function ChatBot() {
         addBotMessage(
           'נהדר! 💰\nמה התקציב שלך ללילה?',
           ['עד 500 ₪', '500-1000 ₪', '1000-2000 ₪', '2000+ ₪', 'גמיש 💪']
+        );
+      }, 1000);
+    } else if (currentStep === 21) {
+      // Shabbat Hatan date
+      addUserMessage(inputValue);
+      setUserData((prev) => ({ ...prev, shabbatHatanDate: inputValue }));
+      setInputValue('');
+      setShowInput(false);
+      setCurrentStep(22);
+      setTimeout(() => {
+        addBotMessage(
+          'מעולה! 💰\nמה התקציב שלכם לשבת חתן?',
+          ['עד 10,000 ₪', '10,000-20,000 ₪', '20,000-40,000 ₪', '40,000+ ₪', 'גמיש 💪']
         );
       }, 1000);
     }
@@ -171,6 +197,14 @@ export default function ChatBot() {
             addBotMessage(
               'אירוע! איזה כיף! 🎊\nכמה אנשים צפויים?',
               ['עד 50 אורחים', '50-100 אורחים', '100-200 אורחים', '200+ אורחים']
+            );
+          }, 1000);
+        } else if (option === 'שבת חתן 🕍') {
+          setCurrentStep(20); // ← 🆕 Shabbat Hatan flow
+          setTimeout(() => {
+            addBotMessage(
+              'שבת חתן! מזל טוב! 🎉💍\nבאיזה אזור אתם מחפשים?',
+              ['צפון 🏔️', 'מרכז 🌆', 'דרום 🏜️', 'ירושלים והסביבה 🕍']
             );
           }, 1000);
         } else {
@@ -256,7 +290,7 @@ export default function ChatBot() {
         }, 1000);
         break;
 
-      // Event flow
+      // Event flow (10-13)
       case 10: // Event guests
         setUserData((prev) => ({ ...prev, eventGuests: option }));
         setCurrentStep(11);
@@ -297,6 +331,60 @@ export default function ChatBot() {
           finishConversation();
         }, 1000);
         break;
+
+      // ← 🆕 Shabbat Hatan flow (20-24)
+      case 20: // Shabbat Hatan location
+        setUserData((prev) => ({ ...prev, location: option }));
+        setCurrentStep(21);
+        setTimeout(() => {
+          addBotMessage('באיזה תאריך תתקיים שבת החתן? (לדוגמה: 15/01/2025)');
+          setInputType('text');
+          setShowInput(true);
+        }, 1000);
+        break;
+
+      case 21: // Handled in handleInputSubmit
+
+      case 22: // Shabbat Hatan budget
+        setUserData((prev) => ({ ...prev, budget: option }));
+        setCurrentStep(23);
+        setTimeout(() => {
+          addBotMessage(
+            'כמה אורחים צפויים לשבת החתן? 👥',
+            ['עד 30 אורחים', '30-50 אורחים', '50-100 אורחים', '100+ אורחים']
+          );
+        }, 1000);
+        break;
+
+      case 23: // Shabbat Hatan guests
+        setUserData((prev) => ({ ...prev, shabbatHatanGuests: option }));
+        setCurrentStep(24);
+        setTimeout(() => {
+          addBotMessage(
+            'איזו רמת כשרות אתם צריכים? 🍽️',
+            ['רבנות רגילה ✅', 'רבנות מהדרין ⭐', 'בד"ץ ⭐⭐', 'לא משנה 🤷‍♂️']
+          );
+        }, 1000);
+        break;
+
+      case 24: // Kashrut
+        setUserData((prev) => ({ ...prev, kashrut: option }));
+        setCurrentStep(25);
+        setTimeout(() => {
+          addBotMessage(
+            'צריכים משגיח צמוד לשבת? 👨‍🍳',
+            ['כן, חובה! ✅', 'לא צריך 🙅']
+          );
+        }, 1000);
+        break;
+
+      case 25: // Supervisor
+        setUserData((prev) => ({ ...prev, supervisor: option }));
+        setCurrentStep(99);
+        setTimeout(() => {
+          finishShabbatHatanConversation();
+        }, 1000);
+        break;
     }
   };
 
@@ -307,19 +395,33 @@ export default function ChatBot() {
     );
   };
 
+  const finishShabbatHatanConversation = () => {
+    addBotMessage(
+      'מושלם! 🎉💍\n\nקיבלתי את כל הפרטים לשבת החתן.\nעכשיו אשלח את הכל ל-WhatsApp ונחזור אליך במהרה עם הצעות מתאימות!\n\n📖 בינתיים, מוזמנים לקרוא עוד על שבת חתן בדף המיוחד שלנו:',
+      ['שלח ל-WhatsApp ✅', 'קרא עוד על שבת חתן 📖']
+    );
+  };
+
   const sendToWhatsApp = () => {
-    // Get only user responses (answers), not bot questions
     const responses = [];
     
     if (userData.name) responses.push(`👤 שם: ${userData.name}`);
     if (userData.phone) responses.push(`📱 טלפון: ${userData.phone}`);
-    if (userData.propertyType) responses.push(`🏠 סוג נכס: ${userData.propertyType}`);
+    if (userData.propertyType) responses.push(`🏠 סוג שירות: ${userData.propertyType}`);
     
     if (userData.propertyType === 'מתחם אירועים 🎉') {
       if (userData.eventGuests) responses.push(`👥 מספר אורחים: ${userData.eventGuests}`);
       if (userData.eventVenue) responses.push(`📍 מקום: ${userData.eventVenue}`);
       if (userData.eventProduction) responses.push(`🎬 הפקה: ${userData.eventProduction}`);
       if (userData.budget) responses.push(`💰 תקציב: ${userData.budget}`);
+    } else if (userData.propertyType === 'שבת חתן 🕍') {
+      // ← 🆕 Shabbat Hatan data
+      if (userData.location) responses.push(`📍 אזור: ${userData.location}`);
+      if (userData.shabbatHatanDate) responses.push(`📅 תאריך: ${userData.shabbatHatanDate}`);
+      if (userData.budget) responses.push(`💰 תקציב: ${userData.budget}`);
+      if (userData.shabbatHatanGuests) responses.push(`👥 אורחים: ${userData.shabbatHatanGuests}`);
+      if (userData.kashrut) responses.push(`🍽️ כשרות: ${userData.kashrut}`);
+      if (userData.supervisor) responses.push(`👨‍🍳 משגיח: ${userData.supervisor}`);
     } else {
       if (userData.location) responses.push(`📍 אזור: ${userData.location}`);
       if (userData.guestCount) responses.push(`👥 אורחים: ${userData.guestCount}`);
@@ -388,8 +490,10 @@ export default function ChatBot() {
                         <button
                           key={index}
                           onClick={() => {
-                            if (currentStep === 99) {
+                            if (currentStep === 99 && option === 'שלח ל-WhatsApp ✅') {
                               sendToWhatsApp();
+                            } else if (currentStep === 99 && option === 'קרא עוד על שבת חתן 📖') {
+                              window.open('/shabbat-hatan', '_blank');
                             } else {
                               handleNextStep(option);
                             }
