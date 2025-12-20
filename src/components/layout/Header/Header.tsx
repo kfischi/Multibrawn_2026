@@ -22,7 +22,8 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: 'בית' },
     { href: '/gallery', label: 'גלריה' },
-    { href: '/shabbat-hatan', label: 'שבת חתן' }, // ← 🆕 הקישור החדש!
+    { href: '/shabbat-hatan', label: 'שבת חתן' },
+    { href: '/blog', label: 'בלוג' }, // ← 🆕 בלוג!
     { href: '/tips', label: 'טיפים' },
     { href: '/about', label: 'אודות' },
     { href: '/contact', label: 'צור קשר' },
