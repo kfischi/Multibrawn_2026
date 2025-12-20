@@ -23,7 +23,8 @@ export default function Header() {
     { href: '/', label: 'בית' },
     { href: '/gallery', label: 'גלריה' },
     { href: '/shabbat-hatan', label: 'שבת חתן' },
-    { href: '/blog', label: 'בלוג' }, // ← 🆕 בלוג!
+    // 👇 השינוי כאן: הקישור מוביל ל-#, הטקסט שונה, והוספנו דגל לזיהוי
+    { href: '#', label: 'בלוג (בקרוב...)', isComingSoon: true }, 
     { href: '/tips', label: 'טיפים' },
     { href: '/about', label: 'אודות' },
     { href: '/contact', label: 'צור קשר' },
@@ -46,9 +47,12 @@ export default function Header() {
         <nav className={styles.desktopNav}>
           {navLinks.map((link) => (
             <Link
-              key={link.href}
+              key={link.label} // שיניתי ל-label כי ה-href יכול להיות זהה (#)
               href={link.href}
               className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
+              // 👇 אם זה "בקרוב", נוסיף סטייל שמבטל לחיצה ומשנה שקיפות
+              style={link.isComingSoon ? { pointerEvents: 'none', opacity: 0.6, cursor: 'default' } : {}}
+              aria-disabled={link.isComingSoon}
             >
               {link.label}
             </Link>
@@ -71,10 +75,18 @@ export default function Header() {
           <nav className={styles.mobileNav}>
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 className={`${styles.mobileNavLink} ${pathname === link.href ? styles.active : ''}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                    // 👇 מונע סגירה של התפריט או מעבר דף אם זה "בקרוב"
+                    if (link.isComingSoon) {
+                        e.preventDefault();
+                    } else {
+                        setIsMenuOpen(false);
+                    }
+                }}
+                style={link.isComingSoon ? { opacity: 0.6, color: '#888' } : {}}
               >
                 {link.label}
               </Link>
