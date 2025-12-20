@@ -260,7 +260,7 @@ npm run build
 
 ## 📄 **License**
 
-© 2024 MULTIBRAWN. All rights reserved.
+© 2025 MULTIBRAWN. All rights reserved.
 
 ---
 
