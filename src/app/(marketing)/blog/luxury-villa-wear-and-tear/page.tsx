@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../Article.module.css';
+// 👇 התיקון הקריטי: רק "../" אחד
+import styles from '../Article.module.css'; 
 
 export default function WearAndTearPage() {
   return (
@@ -21,7 +24,7 @@ export default function WearAndTearPage() {
 
         <div className={styles.featuredImage}>
           <Image 
-            src="https://res.cloudinary.com/decirk3zb/image/upload/f_auto,q_auto/v1/villa-living-room" 
+            src="https://res.cloudinary.com/dptyfvwyo/image/upload/f_auto,q_auto/v1765034116/Logo_1_dgyryu_e_background_removal_f_png_xpwl2w.png"
             alt="סלון בוילה" 
             fill 
             style={{ objectFit: 'cover' }} 
