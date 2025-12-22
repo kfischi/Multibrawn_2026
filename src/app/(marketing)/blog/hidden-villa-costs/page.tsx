@@ -1,6 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../Article.module.css';
+import styles from '../Article.module.css'; // תוקן הנתיב
 
 export default function HiddenCostsPage() {
   return (
@@ -21,7 +23,7 @@ export default function HiddenCostsPage() {
 
         <div className={styles.featuredImage}>
           <Image 
-            src="https://res.cloudinary.com/decirk3zb/image/upload/f_auto,q_auto/v1/villa-money" 
+            src="https://res.cloudinary.com/dptyfvwyo/image/upload/f_auto,q_auto/v1765034116/Logo_1_dgyryu_e_background_removal_f_png_xpwl2w.png"
             alt="כסף ותקציב נופש" 
             fill 
             style={{ objectFit: 'cover' }} 
