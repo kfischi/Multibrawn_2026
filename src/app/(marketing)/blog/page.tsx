@@ -5,7 +5,7 @@ import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
   title: 'בלוג - טיפים ומדריכים לצימרים | MULTIBRAWN',
-  description: 'מאמרים, טיפים ומדריכים לבחירת הצימר המושלם - כל מה שצריך לדעת לפני ההזמנה',
+  description: 'מאמרים, טיפים, סרטונים ומדריכים לבחירת הצימר המושלם',
   keywords: ['בלוג צימרים', 'טיפים לצימרים', 'מדריכי נופש', 'צפון'],
 };
 
@@ -13,11 +13,20 @@ const articles = [
   {
     slug: 'heated-pool-guide',
     title: 'המדריך המלא לבריכות מחוממות',
-    excerpt: 'מחוממת או פושרת? כל מה שצריך לדעת לפני ההזמנה',
+    excerpt: 'מחוממת או פושרת? כל מה שצריך לדעת',
     category: 'מדריכים',
     image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252877/תמונה_bqjuyx.png',
     date: '20 בדצמבר 2024',
     readTime: '7 דקות',
+  },
+  {
+    slug: 'shabbat-hatan-rosh-shaket',
+    title: '✡️ שבת חתן בראש שקט',
+    excerpt: 'כל מה שצריך לדעת על ארגון שבת חתן מושלם',
+    category: 'וידאו',
+    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828299/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_zo14ig.png',
+    date: '23 בדצמבר 2024',
+    readTime: '2 דקות',
   },
   {
     slug: 'modesty-check-religious',
@@ -38,6 +47,15 @@ const articles = [
     readTime: '5 דקות',
   },
   {
+    slug: 'eilat-warning',
+    title: '🌴 נוסעים לאילת? תיזהרו',
+    excerpt: 'טיפים חשובים לפני שנוסעים לאילת',
+    category: 'וידאו',
+    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828637/%D7%90%D7%99%D7%9C%D7%AA_rtmczk.png',
+    date: '23 בדצמבר 2024',
+    readTime: '2 דקות',
+  },
+  {
     slug: 'adults-only-quiet-guide',
     title: 'שקט בבקשה',
     excerpt: 'איך למצוא צימר שקט באמת',
@@ -54,6 +72,15 @@ const articles = [
     image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252778/תמונה_jwj0zg.png',
     date: '20 בדצמבר 2024',
     readTime: '5 דקות',
+  },
+  {
+    slug: 'cheap-zimmer-warning',
+    title: '💰 מחפשים זול?',
+    excerpt: 'למה לפעמים זול יוצא יקר',
+    category: 'וידאו',
+    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828638/%D7%96%D7%95%D7%9C_t7cops.png',
+    date: '23 בדצמבר 2024',
+    readTime: '2 דקות',
   },
   {
     slug: 'photos-vs-reality-guide',
@@ -74,6 +101,15 @@ const articles = [
     readTime: '4 דקות',
   },
   {
+    slug: 'villa-dangers',
+    title: '⚠️ ממה להיזהר בוילה',
+    excerpt: 'נקודות חשובות לבדוק כשמגיעים',
+    category: 'וידאו',
+    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg',
+    date: '23 בדצמבר 2024',
+    readTime: '2 דקות',
+  },
+  {
     slug: 'last-minute-deals-guide',
     title: 'הדקה ה-90',
     excerpt: 'מתי באמת כדאי לחכות',
@@ -91,6 +127,24 @@ const articles = [
     date: '20 בדצמבר 2024',
     readTime: '4 דקות',
   },
+  {
+    slug: 'hidden-villa-costs',
+    title: 'עלויות נסתרות',
+    excerpt: 'כל העלויות שלא סיפרו לכם',
+    category: 'טיפים',
+    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252778/תמונה_jwj0zg.png',
+    date: '20 בדצמבר 2024',
+    readTime: '5 דקות',
+  },
+  {
+    slug: 'luxury-villa-wear-and-tear',
+    title: 'בלאי בווילות יוקרה',
+    excerpt: 'איך לזהות בלאי ולשמור על האיכות',
+    category: 'מדריכים',
+    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253408/תמונה_fwjqkl.png',
+    date: '20 בדצמבר 2024',
+    readTime: '5 דקות',
+  },
 ];
 
 export default function BlogPage() {
@@ -100,7 +154,7 @@ export default function BlogPage() {
         <header className={styles.header}>
           <h1 className={styles.title}>הבלוג שלנו</h1>
           <p className={styles.description}>
-            טיפים, מדריכים והמלצות לבחירת הצימר המושלם
+            טיפים, סרטונים, מדריכים והמלצות לבחירת הצימר המושלם
           </p>
         </header>
 
