@@ -1,13 +1,9 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Blog.module.css';
-
-export const metadata: Metadata = {
-  title: 'בלוג - טיפים ומדריכים לצימרים | MULTIBRAWN',
-  description: 'מאמרים, טיפים, סרטונים ומדריכים לבחירת הצימר המושלם',
-  keywords: ['בלוג צימרים', 'טיפים לצימרים', 'מדריכי נופש', 'צפון'],
-};
 
 const articles = [
   {
@@ -25,6 +21,7 @@ const articles = [
     excerpt: 'כל מה שצריך לדעת על ארגון שבת חתן מושלם',
     category: 'וידאו',
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828299/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_zo14ig.png',
+    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684490/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_gamaqi.mp4',
     date: '23 בדצמבר 2024',
     readTime: '2 דקות',
   },
@@ -52,6 +49,7 @@ const articles = [
     excerpt: 'טיפים חשובים לפני שנוסעים לאילת',
     category: 'וידאו',
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828637/%D7%90%D7%99%D7%9C%D7%AA_rtmczk.png',
+    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684426/%D7%90%D7%99%D7%9C%D7%AA_ba7jjj.mp4',
     date: '23 בדצמבר 2024',
     readTime: '2 דקות',
   },
@@ -79,6 +77,7 @@ const articles = [
     excerpt: 'למה לפעמים זול יוצא יקר',
     category: 'וידאו',
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828638/%D7%96%D7%95%D7%9C_t7cops.png',
+    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763718107/%D7%96%D7%95%D7%9C_lcwakc.mp4',
     date: '23 בדצמבר 2024',
     readTime: '2 דקות',
   },
@@ -106,6 +105,7 @@ const articles = [
     excerpt: 'נקודות חשובות לבדוק כשמגיעים',
     category: 'וידאו',
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg',
+    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684101/Video3_omgivy.mp4',
     date: '23 בדצמבר 2024',
     readTime: '2 דקות',
   },
@@ -132,7 +132,7 @@ const articles = [
     title: 'עלויות נסתרות',
     excerpt: 'כל העלויות שלא סיפרו לכם',
     category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252778/תמונה_jwj0zg.png',
+    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253191/תמונה_mujulg.png',
     date: '20 בדצמבר 2024',
     readTime: '5 דקות',
   },
@@ -141,13 +141,26 @@ const articles = [
     title: 'בלאי בווילות יוקרה',
     excerpt: 'איך לזהות בלאי ולשמור על האיכות',
     category: 'מדריכים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253408/תמונה_fwjqkl.png',
+    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252967/תמונה_lgez2k.png',
     date: '20 בדצמבר 2024',
     readTime: '5 דקות',
   },
 ];
 
 export default function BlogPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState('');
+
+  const openVideo = (videoUrl: string) => {
+    setCurrentVideo(videoUrl);
+    setModalOpen(true);
+  };
+
+  const closeVideo = () => {
+    setModalOpen(false);
+    setCurrentVideo('');
+  };
+
   return (
     <div className={styles.blog}>
       <div className={styles.container}>
@@ -159,33 +172,88 @@ export default function BlogPage() {
         </header>
 
         <div className={styles.grid}>
-          {articles.map((article) => (
-            <Link
-              key={article.slug}
-              href={`/blog/${article.slug}`}
-              className={styles.card}
-            >
-              <div className={styles.cardImage}>
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className={styles.cardContent}>
-                <span className={styles.category}>{article.category}</span>
-                <h2 className={styles.cardTitle}>{article.title}</h2>
-                <p className={styles.excerpt}>{article.excerpt}</p>
-                <div className={styles.meta}>
-                  <span>{article.date}</span>
-                  <span>⏱️ {article.readTime}</span>
+          {articles.map((article) => {
+            const isVideo = article.category === 'וידאו';
+            
+            if (isVideo && article.videoUrl) {
+              return (
+                <div
+                  key={article.slug}
+                  className={styles.card}
+                  onClick={() => openVideo(article.videoUrl!)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div className={styles.cardImage}>
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <div className={styles.playButton}>
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <span className={styles.category}>{article.category}</span>
+                    <h2 className={styles.cardTitle}>{article.title}</h2>
+                    <p className={styles.excerpt}>{article.excerpt}</p>
+                    <div className={styles.meta}>
+                      <span>{article.date}</span>
+                      <span>⏱️ {article.readTime}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              );
+            }
+
+            return (
+              <Link
+                key={article.slug}
+                href={`/blog/${article.slug}`}
+                className={styles.card}
+              >
+                <div className={styles.cardImage}>
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div className={styles.cardContent}>
+                  <span className={styles.category}>{article.category}</span>
+                  <h2 className={styles.cardTitle}>{article.title}</h2>
+                  <p className={styles.excerpt}>{article.excerpt}</p>
+                  <div className={styles.meta}>
+                    <span>{article.date}</span>
+                    <span>⏱️ {article.readTime}</span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
+
+      {/* Video Modal */}
+      {modalOpen && (
+        <div className={styles.modal} onClick={closeVideo}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={closeVideo}>
+              ✕
+            </button>
+            <video
+              src={currentVideo}
+              controls
+              autoPlay
+              className={styles.video}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
