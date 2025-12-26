@@ -46,11 +46,12 @@ export default function Header() {
         <Link href="/" className={styles.logoLink}>
           <div className={styles.logo}>
             <Image
-              src="https://res.cloudinary.com/decirk3zb/image/upload/v1766175006/MULTIBRAWN_LOGO_wcxrbt.png"
-              alt="MULTIBRAWN"
+              src="https://res.cloudinary.com/decirk3zb/image/upload/v1766783584/Logo_1_sneunp.jpg"
+              alt="MULTIBRAWN לוגו - צימרים וילות ואירועים"
               width={180}
               height={60}
               priority
+              quality={95}
             />
           </div>
         </Link>
