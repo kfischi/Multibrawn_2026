@@ -41,16 +41,20 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        {/* Logo - גודל קטן 140x47 */}
+        {/* Logo - קטן ללא רקע */}
         <Link href="/" className={styles.logoLink}>
           <div className={styles.logo}>
             <Image
-              src="https://res.cloudinary.com/decirk3zb/image/upload/v1766783584/Logo_1_sneunp.jpg"
-              alt="MULTIBRAWN לוגו"
-              width={140}
-              height={47}
+              src="https://res.cloudinary.com/decirk3zb/image/upload/e_background_removal/f_png/v1766783584/Logo_1_sneunp.jpg"
+              alt="MULTIBRAWN"
+              width={100}
+              height={33}
               priority
-              style={{ maxWidth: '140px', height: 'auto' }}
+              style={{ 
+                maxWidth: '100px', 
+                height: 'auto',
+                objectFit: 'contain'
+              }}
             />
           </div>
         </Link>
