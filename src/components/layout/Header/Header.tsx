@@ -51,7 +51,6 @@ export default function Header() {
               width={180}
               height={60}
               priority
-              quality={95}
             />
           </div>
         </Link>
