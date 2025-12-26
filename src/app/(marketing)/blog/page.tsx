@@ -15,7 +15,7 @@ const articles = [
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828299/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_zo14ig.png',
     videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684490/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_gamaqi.mp4',
     date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
+    readTime: '1:15',
   },
   {
     slug: 'eilat-warning',
@@ -25,7 +25,7 @@ const articles = [
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828637/%D7%90%D7%99%D7%9C%D7%AA_rtmczk.png',
     videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684426/%D7%90%D7%99%D7%9C%D7%AA_ba7jjj.mp4',
     date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
+    readTime: '0:45',
   },
   {
     slug: 'cheap-zimmer-warning',
@@ -35,7 +35,7 @@ const articles = [
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828638/%D7%96%D7%95%D7%9C_t7cops.png',
     videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763718107/%D7%96%D7%95%D7%9C_lcwakc.mp4',
     date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
+    readTime: '1:30',
   },
   {
     slug: 'villa-dangers',
@@ -45,7 +45,7 @@ const articles = [
     image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg',
     videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684101/Video3_omgivy.mp4',
     date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
+    readTime: '1:00',
   },
   // מאמרים
   {
@@ -170,7 +170,7 @@ export default function BlogPage() {
             if (isVideo && article.videoUrl) {
               return (
                 <div key={article.slug} className={styles.card}>
-                  <div className={styles.cardImage}>
+                  <div className={`${styles.cardImage} ${styles.videoCard}`}>
                     {!isPlaying ? (
                       <>
                         <Image
@@ -193,11 +193,7 @@ export default function BlogPage() {
                         src={article.videoUrl}
                         controls
                         autoPlay
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
+                        className={styles.verticalVideo}
                       />
                     )}
                   </div>
