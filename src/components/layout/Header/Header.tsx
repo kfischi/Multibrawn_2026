@@ -1,259 +1,93 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
-const articles = [
-  {
-    slug: 'heated-pool-guide',
-    title: 'המדריך המלא לבריכות מחוממות',
-    excerpt: 'מחוממת או פושרת? כל מה שצריך לדעת',
-    category: 'מדריכים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252877/תמונה_bqjuyx.png',
-    date: '20 בדצמבר 2024',
-    readTime: '7 דקות',
-  },
-  {
-    slug: 'shabbat-hatan-rosh-shaket',
-    title: '✡️ שבת חתן בראש שקט',
-    excerpt: 'כל מה שצריך לדעת על ארגון שבת חתן מושלם',
-    category: 'וידאו',
-    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828299/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_zo14ig.png',
-    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684490/%D7%A9%D7%91%D7%AA_%D7%97%D7%AA%D7%9F_gamaqi.mp4',
-    date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
-  },
-  {
-    slug: 'modesty-check-religious',
-    title: 'מבחן הצניעות',
-    excerpt: 'כתוב פרטיות מלאה אבל השכן רואה הכל',
-    category: 'מדריכים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253110/תמונה_ha3oeo.png',
-    date: '20 בדצמבר 2024',
-    readTime: '6 דקות',
-  },
-  {
-    slug: 'jacuzzi-hygiene-check',
-    title: 'הג׳קוזי המלוכלך',
-    excerpt: 'נכנסתם לג׳קוזי ויש קצף צהוב? צאו מיד',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252967/תמונה_lgez2k.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-  {
-    slug: 'eilat-warning',
-    title: '🌴 נוסעים לאילת? תיזהרו',
-    excerpt: 'טיפים חשובים לפני שנוסעים לאילת',
-    category: 'וידאו',
-    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828637/%D7%90%D7%99%D7%9C%D7%AA_rtmczk.png',
-    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684426/%D7%90%D7%99%D7%9C%D7%AA_ba7jjj.mp4',
-    date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
-  },
-  {
-    slug: 'adults-only-quiet-guide',
-    title: 'שקט בבקשה',
-    excerpt: 'איך למצוא צימר שקט באמת',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253191/תמונה_mujulg.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-  {
-    slug: 'breakfast-value-guide',
-    title: 'ארוחת הבוקר',
-    excerpt: 'חביתה ב-150 שקל? מתי שווה להזמין',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252778/תמונה_jwj0zg.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-  {
-    slug: 'cheap-zimmer-warning',
-    title: '💰 מחפשים זול?',
-    excerpt: 'למה לפעמים זול יוצא יקר',
-    category: 'וידאו',
-    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1763828638/%D7%96%D7%95%D7%9C_t7cops.png',
-    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763718107/%D7%96%D7%95%D7%9C_lcwakc.mp4',
-    date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
-  },
-  {
-    slug: 'photos-vs-reality-guide',
-    title: 'תמונות מול מציאות',
-    excerpt: 'איך להבין שהצימר קטן במציאות',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253283/תמונה_ga3cj2.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-  {
-    slug: 'real-fireplace-guide',
-    title: 'קמין אמיתי',
-    excerpt: 'קמין אמיתי או דקורטיבי? איך לדעת',
-    category: 'מדריכים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253408/תמונה_fwjqkl.png',
-    date: '20 בדצמבר 2024',
-    readTime: '4 דקות',
-  },
-  {
-    slug: 'villa-dangers',
-    title: '⚠️ ממה להיזהר בוילה',
-    excerpt: 'נקודות חשובות לבדוק כשמגיעים',
-    category: 'וידאו',
-    image: 'https://res.cloudinary.com/dptyfvwyo/image/upload/v1760818934/22_tt9jvz.jpg',
-    videoUrl: 'https://res.cloudinary.com/dptyfvwyo/video/upload/v1763684101/Video3_omgivy.mp4',
-    date: '23 בדצמבר 2024',
-    readTime: '2 דקות',
-  },
-  {
-    slug: 'last-minute-deals-guide',
-    title: 'הדקה ה-90',
-    excerpt: 'מתי באמת כדאי לחכות',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253024/תמונה_pl6aee.png',
-    date: '20 בדצמבר 2024',
-    readTime: '4 דקות',
-  },
-  {
-    slug: 'massage-to-room-guide',
-    title: 'מסאז׳ לחדר',
-    excerpt: 'כל מה שצריך לדעת על מסאז׳',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253468/מיטת_עיסוי_nvydzb.png',
-    date: '20 בדצמבר 2024',
-    readTime: '4 דקות',
-  },
-  {
-    slug: 'hidden-villa-costs',
-    title: 'עלויות נסתרות',
-    excerpt: 'כל העלויות שלא סיפרו לכם',
-    category: 'טיפים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766253191/תמונה_mujulg.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-  {
-    slug: 'luxury-villa-wear-and-tear',
-    title: 'בלאי בווילות יוקרה',
-    excerpt: 'איך לזהות בלאי ולשמור על האיכות',
-    category: 'מדריכים',
-    image: 'https://res.cloudinary.com/decirk3zb/image/upload/v1766252967/תמונה_lgez2k.png',
-    date: '20 בדצמבר 2024',
-    readTime: '5 דקות',
-  },
-];
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-export default function BlogPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState('');
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
 
-  const openVideo = (videoUrl: string) => {
-    setCurrentVideo(videoUrl);
-    setModalOpen(true);
-  };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const closeVideo = () => {
-    setModalOpen(false);
-    setCurrentVideo('');
+  const navLinks = [
+    { href: '/', label: 'בית' },
+    { href: '/gallery', label: 'גלריה' },
+    { href: '/shabbat-hatan', label: 'שבת חתן' },
+    { href: '/blog', label: 'בלוג' },
+    { href: '/about', label: 'אודות' },
+    { href: '/contact', label: 'צור קשר' },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname?.startsWith(href);
   };
 
   return (
-    <div className={styles.blog}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>הבלוג שלנו</h1>
-          <p className={styles.description}>
-            טיפים, סרטונים, מדריכים והמלצות לבחירת הצימר המושלם
-          </p>
-        </header>
-
-        <div className={styles.grid}>
-          {articles.map((article) => {
-            const isVideo = article.category === 'וידאו';
-            
-            if (isVideo && article.videoUrl) {
-              return (
-                <div
-                  key={article.slug}
-                  className={styles.card}
-                  onClick={() => openVideo(article.videoUrl!)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <div className={styles.cardImage}>
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className={styles.playButton}>
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <span className={styles.category}>{article.category}</span>
-                    <h2 className={styles.cardTitle}>{article.title}</h2>
-                    <p className={styles.excerpt}>{article.excerpt}</p>
-                    <div className={styles.meta}>
-                      <span>{article.date}</span>
-                      <span>⏱️ {article.readTime}</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={article.slug}
-                href={`/blog/${article.slug}`}
-                className={styles.card}
-              >
-                <div className={styles.cardImage}>
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <div className={styles.cardContent}>
-                  <span className={styles.category}>{article.category}</span>
-                  <h2 className={styles.cardTitle}>{article.title}</h2>
-                  <p className={styles.excerpt}>{article.excerpt}</p>
-                  <div className={styles.meta}>
-                    <span>{article.date}</span>
-                    <span>⏱️ {article.readTime}</span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Video Modal */}
-      {modalOpen && (
-        <div className={styles.modal} onClick={closeVideo}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeBtn} onClick={closeVideo}>
-              ✕
-            </button>
-            <video
-              src={currentVideo}
-              controls
-              autoPlay
-              className={styles.video}
+        <Link href="/" className={styles.logoLink}>
+          <div className={styles.logo}>
+            <Image
+              src="https://res.cloudinary.com/decirk3zb/image/upload/v1766175006/MULTIBRAWN_LOGO_wcxrbt.png"
+              alt="MULTIBRAWN"
+              width={180}
+              height={60}
+              priority
             />
           </div>
-        </div>
-      )}
-    </div>
+        </Link>
+
+        <nav className={styles.nav}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles.navLink} ${isActive(link.href) ? styles.active : ''}`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <button
+          className={styles.mobileMenuButton}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="תפריט"
+        >
+          <span className={styles.hamburger}></span>
+          <span className={styles.hamburger}></span>
+          <span className={styles.hamburger}></span>
+        </button>
+
+        {isMobileMenuOpen && (
+          <div className={styles.mobileMenu}>
+            <nav className={styles.mobileNav}>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.mobileNavLink} ${isActive(link.href) ? styles.active : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
   );
 }
