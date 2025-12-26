@@ -20,7 +20,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
@@ -42,12 +41,12 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        {/* Logo */}
+        {/* Logo - גודל קטן 140x47 */}
         <Link href="/" className={styles.logoLink}>
           <div className={styles.logo}>
             <Image
               src="https://res.cloudinary.com/decirk3zb/image/upload/v1766783584/Logo_1_sneunp.jpg"
-              alt="MULTIBRAWN לוגו - צימרים וילות ואירועים"
+              alt="MULTIBRAWN לוגו"
               width={140}
               height={47}
               priority
@@ -69,7 +68,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger */}
         <button
           className={styles.hamburger}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -98,7 +97,7 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Overlay */}
       {isMobileMenuOpen && (
         <div 
           className={styles.overlay}
