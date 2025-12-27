@@ -1,6 +1,6 @@
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import ChatBot from '@/components/layout/ChatBot';
+import Header from '@/components/layout/Header/Header';
+import Footer from '@/components/layout/Footer/Footer';
+import ChatBot from '@/components/layout/ChatBot/ChatBot';
 
 export default function MarketingLayout({
   children,
@@ -18,3 +18,12 @@ export default function MarketingLayout({
     </>
   );
 }
+```
+
+---
+
+## ✅ **מה לעשות עכשיו:**
+
+### **1. פתח את הקובץ:**
+```
+src/app/(marketing)/layout.tsx
